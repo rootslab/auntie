@@ -54,7 +54,8 @@ var Auntie  = require( 'auntie' );
 ### Constructor
 
 > Arguments between [] are optional.
-> The default pattern is '\r\n' or CRLF sequence.
+
+> __NOTE__: the default pattern is __'\r\n'__ or __CRLF__ sequence.
 
 ```javascript
 Auntie( [ Buffer pattern | String pattern | Number pattern ] )
@@ -65,9 +66,14 @@ new Auntie( [ Buffer pattern | String pattern | Number pattern ] )
 ###  Properties
 
 ```javascript
-/*
- * 
- */
+// The current pattern for splitting data
+Auntie.pattern : Buffer
+
+// the Boyer-Moore parser, under the hood.
+Auntie.bop : Bop
+
+// current remaining data parsed with no matches
+Auntie.snip = Buffer
 
 ```
 
@@ -109,14 +115,10 @@ new Auntie( [ Buffer pattern | String pattern | Number pattern ] )
 > is set to true, no event will be emitted.
 
 ```javascript
-/*
- * A result has been found.
- */
+// a result has been found.
 'snap' : function ( Buffer result )
 
-/*
- * The current remaining data without any match.
- */
+// the current remaining data without any match.
 'snip' : function ( Buffer result )
 ```
 
