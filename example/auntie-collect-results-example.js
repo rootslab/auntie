@@ -23,7 +23,6 @@ rstream._readableState.highWaterMark = 512;
 
 log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
-
 let t = 0
     , c = 0
     , m = 0
