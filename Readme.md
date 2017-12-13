@@ -15,9 +15,9 @@
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
-> __Auntie__, my dear __ultra-fast__ module for __untying/splitting a stream__ of data with a __choosen pattern__.
+> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting__ a stream of data with a __choosen pattern__.
 
-> It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a _Boyer-Moore_ parser,
+> It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
 > optimized for pattern lengths <= 255 bytes.
 
 
@@ -55,7 +55,7 @@ var Auntie  = require( 'auntie' );
 
 > Arguments between [] are optional.
 
-> __NOTE__: the default pattern is __'\r\n'__ or __CRLF__ sequence.
+> __NOTE__: the default pattern is **_'\r\n'_** (CRLF sequence).
 
 ```javascript
 Auntie( [ Buffer pattern | String pattern | Number pattern ] )
@@ -72,7 +72,7 @@ Auntie.pattern : Buffer
 // the Boyer-Moore parser, under the hood.
 Auntie.bop : Bop
 
-// current remaining data parsed with no matches
+// the remaining data, without any match found.
 Auntie.snip = Buffer
 
 ```
@@ -118,7 +118,7 @@ Auntie.snip = Buffer
 // a result has been found.
 'snap' : function ( Buffer result )
 
-// the current remaining data without any match.
+// the current remaining data, without any match found.
 'snip' : function ( Buffer result )
 ```
 

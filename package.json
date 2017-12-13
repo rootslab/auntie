@@ -1,6 +1,6 @@
 {
   "name": "auntie"
-  , "version": "0.4.0"
+  , "version": "0.4.1"
   , "description": "Auntie, my dear ultra-fast module for untying/splitting a stream of data with a choosen pattern."
   , "homepage": "https://github.com/rootslab/auntie"
   , "private": false
@@ -12,6 +12,7 @@
     "auntie"
     , "parser"
     , "splitter"
+    , "pattern search"
     , "pattern matching"
     , "streaming parser"
     , "boyer-moore"
@@ -22,7 +23,7 @@
   }
   , "dependencies": {
       "bolgia" : ">=2.8.2"
-      , "bop" : ">=2.3.0"
+      , "bop" : ">=2.3.1"
   },
   "devDependencies": {
      "dado" : ">=0.3.1"
