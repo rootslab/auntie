@@ -109,7 +109,7 @@ Auntie.snip = Buffer
 
 #### Events
 
-> Auntie emits only 2 types of events: __snap__ and __snip__.
+> Auntie emits only __2__ types of events: __snap__ and __snip__.
 
 > __NOTE__: if the 'collect' switch for the 'do' and 'flush'
 > is set to true, no event will be emitted.
@@ -122,6 +122,9 @@ Auntie.snip = Buffer
 'snip' : function ( Buffer result )
 ```
 
+#### Examples
+
+> See __[examples](example/)__.
 
 ### MIT License
 
