@@ -15,7 +15,7 @@
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
-> __Auntie__, my dear ultra-fast module for __untying/splitting a stream__ of data with a __choosen pattern__.
+> __Auntie__, my dear __ultra-fast__ module for __untying/splitting a stream__ of data with a __choosen pattern__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a _Boyer-Moore_ parser,
 > optimized for pattern lengths <= 255 bytes.
