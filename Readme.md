@@ -88,7 +88,6 @@ Auntie.snip = Buffer
  * every match; then, after having finished to parse data, it emits a 'snip'
  * event, with the remaining data that does not contains the pattern.
  */
-
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 
 /*
