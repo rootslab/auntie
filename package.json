@@ -1,6 +1,6 @@
 {
   "name": "auntie"
-  , "version": "0.1.2"
+  , "version": "0.2.0"
   , "description": "Auntie, my dear ultra-fast module for untying/splitting a stream of data with a choosen pattern."
   , "homepage": "https://github.com/rootslab/auntie"
   , "private": false
@@ -10,10 +10,11 @@
   }
   , "keywords": [
     "auntie"
-    , "data parser"
-    , "data splitter"
+    , "parser"
+    , "splitter"
     , "pattern matching"
-    , "stream parser"
+    , "streaming parser"
+    , "boyer-moore"
   ]
   , "author": {
     "name": "Guglielmo Ferri"
