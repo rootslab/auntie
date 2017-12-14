@@ -50,7 +50,8 @@ exports.test  = function ( done, assertions ) {
         log( '- !close stream' );
 
         let emsg = '#count error, got: ' + untie.cnt + ') (expected: ' + results.length + ')'
-            , cnt = untie.cnt[ 0 ]
+            , cnt = untie.cnt
+            ;
         assert.ok( cnt === results.length, emsg );
         
         log( '\n- total matches should be: %d', results.length );

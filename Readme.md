@@ -78,8 +78,8 @@ Auntie.snip : Buffer
 // the remaining data, used for counting.
 Auntie.csnip : Buffer
 
-// an Array containing the current number of matches (updated by #count).
-Auntie.cnt : Array
+// the current number of matches (updated by #count).
+Auntie.cnt : Number
 ```
 
 ### Methods
