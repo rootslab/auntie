@@ -101,9 +101,9 @@ Auntie.cnt
  * it returns an Array of results, otherwise it emits a 'snap' event for
  * every match; then, after having finished to parse data, it emits a 'snip'
  * event, with the remaining data that does not contains the pattern.
-*
+ *
  * NOTE: It saves the remaining data that does not contains the pattern, for the
- * next #do call on fresh data ( to check for overlapping matches).
+ * next #do call on fresh data (to check for overlapping matches).
  */
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 
