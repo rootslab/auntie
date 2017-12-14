@@ -34,8 +34,8 @@ rstream.on( 'data', function ( chunk ) {
     log( '\n -> data chunk %d received\n', ++c );
     t += chunk.length;
     // concat current results to collected array
-    let curr = untie.do( chunk, true );
-    // concat, test results later, on 'close' event
+    let curr = untie.do( chunk, true )
+        ;
     if ( curr.length ) {
         let el = curr[ 0 ]
             , i = 0
