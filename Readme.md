@@ -89,12 +89,12 @@ Auntie.cnt
 ```
 /*
  * count how many times the sequence/pattern appears in the stream of data. 
- * It updates and returns the current Auntie.cnt property
+ * It updates and returns an Array with the current Auntie.cnt property.
  * 
  * NOTE: It saves the remaining data that does not contains the pattern, for the
  * next #count call on fresh data (to check for overlapping occurrences).
  */
-'count' : function ( Buffer data ) : Number
+'count' : function ( Buffer data ) : Array
 
 /*
  * split a stream of data by the current sequence/pattern, if collect is true,

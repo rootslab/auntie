@@ -33,14 +33,13 @@ exports.test  = function ( done, assertions ) {
 
     let t = 0
         , c = 0
-        , collected = []
         ;
 
     rstream.on( 'data', function ( chunk ) {
         ++c;
         t += chunk.length;
         // count returns me.cnt property, updated/incremented on every call
-        let cnt = untie.count( chunk, true );
+        let cnt = untie.count( chunk, true )[ 0 ];
     } );
 
     rstream.on( 'end', function () {
