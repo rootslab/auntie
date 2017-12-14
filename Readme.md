@@ -57,7 +57,7 @@ var Auntie  = require( 'auntie' );
 
 > __NOTE__: the default sequence is **_'\r\n'_** (CRLF sequence).
 
-```javascript
+```
 Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 // or
 new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
@@ -65,7 +65,7 @@ new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 
 ### Properties
 
-```javascript
+```
 // The current sequence for splitting data
 Auntie.pattern : Buffer
 
@@ -86,7 +86,7 @@ Auntie.cnt
 
 > Arguments between [] are optional.
 
-```javascript
+```
 /*
  * count how many times the sequence/pattern appears in the stream of data. 
  * It updates and returns the current Auntie.cnt property
@@ -130,7 +130,7 @@ Auntie.cnt
 > __NOTE__: if the 'collect' switch for the 'do' and 'flush'
 > is set to true, no event will be emitted.
 
-```javascript
+```
 // a result has been found.
 'snap' : function ( Buffer result )
 
