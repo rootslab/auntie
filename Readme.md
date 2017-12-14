@@ -73,13 +73,13 @@ Auntie.pattern : Buffer
 Auntie.bop : Bop
 
 // the remaining data, without any match found.
-Auntie.snip = Buffer
+Auntie.snip : Buffer
 
 // the remaining data, used for counting.
-Auntie.csnip = Buffer
+Auntie.csnip : Buffer
 
-// the current number of matches (updated only by Auntie#count).
-Auntie.cnt
+// an Array containing the current number of matches (updated by #count).
+Auntie.cnt : Array
 ```
 
 ### Methods

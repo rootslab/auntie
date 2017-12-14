@@ -49,13 +49,14 @@ exports.test  = function ( done, assertions ) {
     rstream.on( 'close', function () {
         log( '- !close stream' );
 
-        let emsg = '#count error, got: ' + untie.cnt + ') (expected: ' + results.length + ')';
-        assert.ok( untie.cnt === results.length, emsg );
+        let emsg = '#count error, got: ' + untie.cnt + ') (expected: ' + results.length + ')'
+            , cnt = untie.cnt[ 0 ]
+        assert.ok( cnt === results.length, emsg );
         
         log( '\n- total matches should be: %d', results.length );
-        assert.ok( untie.cnt === results.length );
+        assert.ok( cnt === results.length );
         
-        log( '\n- total matches: %d', untie.cnt );
+        log( '\n- total matches: %d', cnt );
         log( '- total data chunks: %d ', c );
         log( '- total data length: %d bytes', t );
 
