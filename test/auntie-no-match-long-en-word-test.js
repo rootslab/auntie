@@ -20,12 +20,12 @@ exports.test  = function ( done, assertions ) {
         ;
 
     log( '- Auntie no match test, loading english long words from file:\n "%s"\n', path );
-    log( '- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+    log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 1024 bytes
     rstream._readableState.highWaterMark = 1024;
 
-    log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+    log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
 
     let m = 0

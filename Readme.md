@@ -15,10 +15,10 @@
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
-> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting__ a stream of data with a __choosen pattern__.
+> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting__ a stream of data by a __chosen sequence__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
-> optimized for pattern lengths <= 255 bytes.
+> optimized for sequences lengths <= 255 bytes.
 
 
 ### Install
@@ -55,18 +55,18 @@ var Auntie  = require( 'auntie' );
 
 > Arguments between [] are optional.
 
-> __NOTE__: the default pattern is **_'\r\n'_** (CRLF sequence).
+> __NOTE__: the default sequence is **_'\r\n'_** (CRLF sequence).
 
 ```javascript
-Auntie( [ Buffer pattern | String pattern | Number pattern ] )
+Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 // or
-new Auntie( [ Buffer pattern | String pattern | Number pattern ] )
+new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 ```
 
-###  Properties
+### Properties
 
 ```javascript
-// The current pattern for splitting data
+// The current sequence for splitting data
 Auntie.pattern : Buffer
 
 // the Boyer-Moore parser, under the hood.
@@ -75,6 +75,11 @@ Auntie.bop : Bop
 // the remaining data, without any match found.
 Auntie.snip = Buffer
 
+// the remaining data, used for counting.
+Auntie.csnip = Buffer
+
+// the current number of matches (updated only by Auntie#count).
+Auntie.cnt
 ```
 
 ### Methods
@@ -83,7 +88,15 @@ Auntie.snip = Buffer
 
 ```javascript
 /*
- * split a stream of data with the current pattern, if collect is true,
+ * count how many times the sequence/pattern appears in the stream of data. 
+ * It saves the remaining data that does not contains the pattern, for the
+ * next #count call on data.
+ * It updates and returns the current Auntie.cnt property
+ */
+'count' : function ( Buffer data ) : Number
+
+/*
+ * split a stream of data by the current sequence/pattern, if collect is true,
  * it returns an Array of results, otherwise it emits a 'snap' event for
  * every match; then, after having finished to parse data, it emits a 'snip'
  * event, with the remaining data that does not contains the pattern.

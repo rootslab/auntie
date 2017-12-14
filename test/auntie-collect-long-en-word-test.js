@@ -23,12 +23,12 @@ exports.test  = function ( done, assertions ) {
         ;
 
     log( '- Auntie collecting test, loading english long words from file:\n "%s"\n', path );
-    log( '- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+    log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 10 bytes
     rstream._readableState.highWaterMark = 10;
 
-    log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+    log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
 
     let t = 0
@@ -57,7 +57,7 @@ exports.test  = function ( done, assertions ) {
             , i = 0
             ;
         for ( ; i < collected.length; el = collected[ ++i ] ) {
-            emsg = 'error, different results with match (n°:' + i + ') (expected:' + results[ i ] + ' is: ' + el + ')';
+            emsg = 'error, different results with match (n°:' + i + ') (expected: ' + results[ i ] + ' is: ' + el + ')';
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write('  -> check collected results (' + ( i + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
@@ -65,7 +65,7 @@ exports.test  = function ( done, assertions ) {
             assert.ok( el.compare( results[ i ] ) === 0, emsg );
         }
 
-        log( '\n- total matches should be %d', i );
+        log( '\n- total matches should be: %d', results.length );
         assert.ok( i === results.length );
 
         log( '\n- total matches: %d', i );

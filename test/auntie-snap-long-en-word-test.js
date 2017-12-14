@@ -22,13 +22,13 @@ exports.test  = function ( done, assertions ) {
         , results = sync_load_and_collect( path, pattern )
         ;
 
-    log( '- Auntie snap event test, loading english long words from file:\n "%s"\n', path );
-    log( '- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+    log( '- Auntie !snap event test, loading english long words from file:\n "%s"\n', path );
+    log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 10 bytes
     rstream._readableState.highWaterMark = 10;
 
-    log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+    log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
 
     let m = 0
@@ -37,7 +37,7 @@ exports.test  = function ( done, assertions ) {
         ;
 
     untie.on( 'snap', function ( data ) {
-        let emsg = 'error, different results with match (n°:' + m + ') (expected:' + results[ m ] + ' is: ' + data + ')'
+        let emsg = 'error, different results with match (n°:' + m + ') (expected: ' + results[ m ] + ' is: ' + data + ')'
             ;
         stdout.clearLine();
         stdout.cursorTo( 0 );
@@ -60,7 +60,7 @@ exports.test  = function ( done, assertions ) {
     rstream.on( 'close', function () {
         log( '- !close stream' );
         
-        log( '\n- total matches should be %d', m );
+        log( '\n- total matches should be: %d', results.length );
         assert.ok( m === results.length );
         
         log( '\n- total matches: %d', m );
