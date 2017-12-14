@@ -18,7 +18,7 @@
 > __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting__ a stream of data by a __chosen sequence__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
-> optimized for sequences lengths <= 255 bytes.
+> optimized for sequence lengths <= 255 bytes.
 
 
 ### Install
