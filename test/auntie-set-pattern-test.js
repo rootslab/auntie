@@ -1,5 +1,5 @@
 /*
- * Auntie#set pattern test
+ * Auntie#set sequence test
  */
 
 exports.test  = function ( done, assertions ) {
@@ -7,7 +7,7 @@ exports.test  = function ( done, assertions ) {
         , exit = typeof done === 'function' ? done : function () {}
         , assert = assertions || require( 'assert' )
         , Auntie = require( '../' )
-        // use a not existing pattern
+        // use a not existing sequence
         , CRLF = Buffer.from( '\r\n' )
         , CRLFCRLF = Buffer.from( '\r\n\r\n' )
         , untie = Auntie()
@@ -15,27 +15,27 @@ exports.test  = function ( done, assertions ) {
         , anumber = Math.random() * 1977
         ;
 
-    log( '- Auntie#set a random number (%d) as pattern.', anumber );
+    log( '- Auntie#set a random number (%d) as sequence.', anumber );
     untie.set( anumber );
     
-    log( '- check pattern correctness..' );
-    assert.ok( untie.pattern, Buffer.from( String( anumber ) ) );
+    log( '- check sequence correctness..' );
+    assert.ok( untie.seq, Buffer.from( String( anumber ) ) );
     
     log( '- remaining data (snip) should be empty, after calling #set' );
     assert.ok( untie.snip.length === 0 );
 
     untie.set( CRLFCRLF );
 
-    log( '- Auntie#set pattern test, current pattern is:', CRLFCRLF );
-    assert.ok( untie.pattern.compare( CRLFCRLF ) === 0, 'error in Auntie constructor, pattern should be "\\r\\n\\r\\n"' );
+    log( '- Auntie#set sequence test, current sequence is:', CRLFCRLF );
+    assert.ok( untie.seq.compare( CRLFCRLF ) === 0, 'error in Auntie constructor, sequence should be "\\r\\n\\r\\n"' );
 
-    log( '- Auntie#set change pattern with no arguments (CRLF)' );
+    log( '- Auntie#set change sequence with no arguments (CRLF)' );
     untie.set();
 
-    log( '- pattern should be "\\r\\n" (CRLF):', untie.pattern );
-    assert.ok( untie.pattern.compare( CRLF ) === 0, 'error in Auntie#set, pattern should be "\\r\\n"' );
+    log( '- sequence should be "\\r\\n" (CRLF):', untie.seq );
+    assert.ok( untie.seq.compare( CRLF ) === 0, 'error in Auntie#set, seq should be "\\r\\n"' );
 
-    assert.ok( untie.pattern.compare( CRLF ) === 0, 'error in Auntie#set, pattern should be "\\r\\n"' );
+    assert.ok( untie.seq.compare( CRLF ) === 0, 'error in Auntie#set, sequence should be "\\r\\n"' );
 
     log( '- collect results..' );
 
@@ -46,7 +46,7 @@ exports.test  = function ( done, assertions ) {
     log( '- results should be empty:', results );
     assert.ok( results.length === 0 );
 
-    log( '- Auntie#set change pattern to (CRLFCRLF)' );
+    log( '- Auntie#set change sequence to (CRLFCRLF)' );
     untie.set( CRLFCRLF );
 
     log( '- collect results with weird data..', tdata );

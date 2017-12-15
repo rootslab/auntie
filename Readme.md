@@ -67,7 +67,7 @@ new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 
 ```javascript
 // The current sequence for splitting data
-Auntie.pattern : Buffer
+Auntie.seq : Buffer
 
 // the Boyer-Moore parser, under the hood.
 Auntie.bop : Bop
@@ -86,41 +86,48 @@ Auntie.cnt : Number
 
 > Arguments between [] are optional.
 
+#### Auntie.count
+> ##### count how many times the sequence appears in a stream of data.
 ```javascript
-{
 /*
- * count how many times the sequence/pattern appears in the stream of data. 
  * It updates and returns an Array with the current Auntie.cnt property.
  * 
- * NOTE: It saves the remaining data that does not contains the pattern, for the
- * next #count call on fresh data (to check for overlapping occurrences).
+ * NOTE: It saves the remaining data that does not contains the sequence, for the
+ * next #count call with fresh data (to check for overlapping occurrences).
  */
-  'count' : function ( Buffer data ) : Array
-
+'count' : function ( Buffer data ) : Array
+```
+#### Auntie.do
+> ##### split a stream of data by the current sequence,
+```javascript
 /*
- * split a stream of data by the current sequence/pattern, if collect is true,
- * it returns an Array of results, otherwise it emits a 'snap' event for
- * every match; then, after having finished to parse data, it emits a 'snip'
- * event, with the remaining data that does not contains the pattern.
+ * if collect is true, it returns an Array of results, otherwise it emits a
+ * 'snap' event for every match; then, after having finished to parse data,
+ * it emits a 'snip' event, with the remaining data that does not contains 
+ * the sequence.
  *
- * NOTE: It saves the remaining data that does not contains the pattern, for the
+ * NOTE: It saves the remaining data that does not contains the sequence, for the
  * next #do call on fresh data (to check for overlapping matches).
  */
-, 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
-
+'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
+```
+#### Auntie.flush
+> ##### flush the remaining data
+```javascript
 /*
- * flush the remaining data, if collect is true it returns
- * a Buffer, otherwise it emits a 'snip' event with data.
- * Obviously the snip doesn't contain the pattern (no match).
+ * if collect is true it returns a Buffer, otherwise it emits 
+ * a 'snip' event with data. Obviously the snip doesn't contain
+ * the sequence (no match).
  */
 'flush' : function ( [ Boolean collect ] ) : [ Buffer snip ]
-
+```
+> #### Auntie.set
+> ##### set a new sequence for splitting data.
+```javascript
 /*
- * set a new pattern for splitting data, the default pattern
- * is '\r\n' or CRLF sequence.
+ * the default sequence is '\r\n' or CRLF sequence.
  */
-, 'set' : function ( [ Buffer pattern | String pattern | Number pattern ] ) : Auntie
-}
+ 'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
 ```
 
 
@@ -134,7 +141,8 @@ Auntie.cnt : Number
 ```javascript
 // a result has been found.
 'snap' : function ( Buffer result )
-
+```
+```javascript
 // the current remaining data, without any match found.
 'snip' : function ( Buffer result )
 ```
