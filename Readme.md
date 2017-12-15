@@ -68,7 +68,7 @@ var Auntie  = require( 'auntie' );
 
 > Arguments between [] are optional.
 
-> __NOTE__: the default sequence is `CRLF sequence` '\r\n'.
+> __NOTE__: the default sequence is `CRLF` ("\r\n").
 
 ```javascript
 Auntie( [ Buffer sequence | String sequence | Number sequence ] )
