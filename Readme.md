@@ -78,6 +78,8 @@ new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 
 ### Properties
 
+> __NOTE__: do not mess up with these properties.
+
 ```javascript
 // The current sequence for splitting data
 Auntie.seq : Buffer
