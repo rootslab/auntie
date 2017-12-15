@@ -80,20 +80,28 @@ new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 
 > __NOTE__: do not mess up with these properties.
 
+##### The current sequence for splitting data
 ```javascript
-// The current sequence for splitting data
 Auntie.seq : Buffer
+```
 
-// the Boyer-Moore parser, under the hood.
+##### the Boyer-Moore parser, under the hood.
+```javascript
 Auntie.bop : Bop
+```
 
-// the remaining data, without any match found.
+##### the remaining data, without any match found.
+```javascript
 Auntie.snip : Buffer
+```
 
-// the remaining data, used for counting.
+##### the remaining data, used for counting.
+```javascript
 Auntie.csnip : Buffer
+```
 
-// the current number of matches (updated by #count).
+##### the current number of matches (updated by #count).
+```javascript
 Auntie.cnt : Number
 ```
 
@@ -155,17 +163,18 @@ Auntie.cnt : Number
 
 ### Events
 
-> Auntie emits only __2__ types of events: __snap__ and __snip__.
+> Auntie emits only __2__ types of events: __`snap`__ and __`snip`__.
 
 > __NOTE__: if the 'collect' switch for the 'do' and 'flush'
 > is set to true, no event will be emitted.
 
+##### !snap a result.
 ```javascript
-// a result has been found.
 'snap' : function ( Buffer result )
 ```
+
+##### !snip current remaining data (with no match found).
 ```javascript
-// the current remaining data, without any match found.
 'snip' : function ( Buffer result )
 ```
 
