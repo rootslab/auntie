@@ -85,9 +85,9 @@ Auntie.cnt : Number
 ### Methods
 
 - __[count](#auntiecount)__
-- __[do](####auntiedo)__
-- __[flush](####auntieflush)__
-- __[set](####auntieset)__
+- __[do](#auntiedo)__
+- __[flush](#auntieflush)__
+- __[set](#auntieset)__
 
 > Arguments between [] are optional.
 
