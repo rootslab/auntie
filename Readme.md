@@ -27,6 +27,10 @@
 - __[Constructor](#constructor)__
 - __[Properties](#properties)__
 - __[Methods](#methods)__
+    - __[count](#auntiecount)__
+    - __[do](#auntiedo)__
+    - __[flush](#auntieflush)__
+    - __[set](#auntieset)__    
 - __[Events](#events)__
 - __[Examples](#examples)__
 
