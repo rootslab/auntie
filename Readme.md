@@ -66,7 +66,7 @@ var Auntie  = require( 'auntie' );
 
 ### Constructor
 
-> Arguments between [] are optional.
+> Arguments between [ ] are optional.
 
 > __NOTE__: default is the `CRLF sequence \r\n`.
 
@@ -99,7 +99,7 @@ Auntie.cnt : Number
 
 ### Methods
 
-> Arguments between [] are optional.
+> Arguments between [ ] are optional.
 
 |            name           |                           description                            |
 |:--------------------------|:-----------------------------------------------------------------|
@@ -153,7 +153,7 @@ Auntie.cnt : Number
  'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
 ```
 
-#### Events
+### Events
 
 > Auntie emits only __2__ types of events: __snap__ and __snip__.
 
@@ -169,7 +169,7 @@ Auntie.cnt : Number
 'snip' : function ( Buffer result )
 ```
 
-#### Examples
+### Examples
 
 > See __[examples](example/)__.
 
