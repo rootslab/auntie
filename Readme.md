@@ -165,9 +165,6 @@ Auntie.cnt : Number
 
 > Auntie emits only __2__ types of events: __`snap`__ and __`snip`__.
 
-> __NOTE__: if the 'collect' switch for the 'do' and 'flush'
-> is set to true, no event will be emitted.
-
 ##### !snap a result.
 ```javascript
 'snap' : function ( Buffer result )
@@ -177,6 +174,9 @@ Auntie.cnt : Number
 ```javascript
 'snip' : function ( Buffer result )
 ```
+
+> __NOTE__: if the '_collect_' switch for the __do__/__flush__ was set (true),
+> then no event will be emitted.
 
 ### Examples
 
