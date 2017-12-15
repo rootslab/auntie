@@ -57,7 +57,7 @@ var Auntie  = require( 'auntie' );
 
 > __NOTE__: the default sequence is **_'\r\n'_** (CRLF sequence).
 
-```
+```javascript
 Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 // or
 new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
@@ -65,7 +65,7 @@ new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
 
 ### Properties
 
-```
+```javascript
 // The current sequence for splitting data
 Auntie.pattern : Buffer
 
@@ -86,7 +86,8 @@ Auntie.cnt : Number
 
 > Arguments between [] are optional.
 
-```
+```javascript
+{
 /*
  * count how many times the sequence/pattern appears in the stream of data. 
  * It updates and returns an Array with the current Auntie.cnt property.
@@ -94,7 +95,7 @@ Auntie.cnt : Number
  * NOTE: It saves the remaining data that does not contains the pattern, for the
  * next #count call on fresh data (to check for overlapping occurrences).
  */
-'count' : function ( Buffer data ) : Array
+  'count' : function ( Buffer data ) : Array
 
 /*
  * split a stream of data by the current sequence/pattern, if collect is true,
@@ -105,7 +106,7 @@ Auntie.cnt : Number
  * NOTE: It saves the remaining data that does not contains the pattern, for the
  * next #do call on fresh data (to check for overlapping matches).
  */
-'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
+, 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 
 /*
  * flush the remaining data, if collect is true it returns
@@ -118,8 +119,8 @@ Auntie.cnt : Number
  * set a new pattern for splitting data, the default pattern
  * is '\r\n' or CRLF sequence.
  */
-'set' : function ( [ Buffer pattern | String pattern | Number pattern ] ) : Auntie
-
+, 'set' : function ( [ Buffer pattern | String pattern | Number pattern ] ) : Auntie
+}
 ```
 
 
@@ -130,7 +131,7 @@ Auntie.cnt : Number
 > __NOTE__: if the 'collect' switch for the 'do' and 'flush'
 > is set to true, no event will be emitted.
 
-```
+```javascript
 // a result has been found.
 'snap' : function ( Buffer result )
 
