@@ -106,7 +106,7 @@ Auntie.cnt : Number
 > ##### count how many times the sequence appears in a stream of data.
 ```javascript
 /*
- * It updates and returns an Array with the current Auntie.cnt property.
+ * it updates and returns an Array with the current Auntie.cnt property.
  * 
  * NOTE: It saves the remaining data that does not contains the sequence, for the
  * next #count call with fresh data (to check for overlapping occurrences).
@@ -122,7 +122,7 @@ Auntie.cnt : Number
  * it emits a 'snip' event, with the remaining data that does not contains 
  * the sequence.
  *
- * NOTE: It saves the remaining data that does not contains the sequence, for the
+ * NOTE: it saves the remaining data that does not contains the sequence, for the
  * next #do call on fresh data (to check for overlapping matches).
  */
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
