@@ -92,12 +92,15 @@ Auntie.cnt : Number
 
 ### Methods
 
-- __[count](#auntiecount)__
-- __[do](#auntiedo)__
-- __[flush](#auntieflush)__
-- __[set](#auntieset)__
-
 > Arguments between [] are optional.
+
+|            name           |                           description                            |
+|:--------------------------|:-----------------------------------------------------------------|
+| __[count](#auntiecount)__ | `count how many times the sequence appears in a stream of data.` |
+| __[do](#auntiedo)__       | `split a stream of data by the current sequence.`                |
+| __[flush](#auntieflush)__ | `flush the remaining data.`                                      |
+| __[set](#auntieset)__     | `set a new sequence for splitting data.`                         |
+
 
 #### Auntie.count
 > ##### count how many times the sequence appears in a stream of data.
@@ -111,7 +114,7 @@ Auntie.cnt : Number
 'count' : function ( Buffer data ) : Array
 ```
 #### Auntie.do
-> ##### split a stream of data by the current sequence,
+> ##### split a stream of data by the current sequence
 ```javascript
 /*
  * if collect is true, it returns an Array of results, otherwise it emits a
