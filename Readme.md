@@ -84,14 +84,14 @@ Auntie.cnt : Number
 
 ### Methods
 
-- __[count](####Auntie.count)__
+- __[count](#Auntiecount)__
 - __[do](####Auntie.do)__
 - __[flush](####Auntie.flush)__
 - __[set](####Auntie.set)__
 
 > Arguments between [] are optional.
 
-#### Auntie.count
+#### Auntie#count
 > ##### count how many times the sequence appears in a stream of data.
 ```javascript
 /*
