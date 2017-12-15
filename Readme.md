@@ -33,6 +33,7 @@
     - __[set](#auntieset)__    
 - __[Events](#events)__
 - __[Examples](#examples)__
+- __[MIT License](#mit-license)__
 
 ### Install
 
