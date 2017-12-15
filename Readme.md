@@ -91,7 +91,7 @@ Auntie.cnt : Number
 
 > Arguments between [] are optional.
 
-#### Auntie#count
+#### Auntie.count
 > ##### count how many times the sequence appears in a stream of data.
 ```javascript
 /*
