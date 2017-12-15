@@ -20,6 +20,15 @@
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
 > optimized for sequence lengths <= 255 bytes.
 
+# Table of Contents
+
+- __[Install](#install)__
+- __[Run Tests](#run-tests)__
+- __[Constructor](#constructor)__
+- __[Properties](#properties)__
+- __[Methods](#methods)__
+- __[Events](#events)__
+- __[Examples](#examples)__
 
 ### Install
 
@@ -49,7 +58,6 @@ var Auntie  = require( 'auntie' );
 ```bash
  $ node test/file-name.js
 ```
-
 
 ### Constructor
 
@@ -134,7 +142,6 @@ Auntie.cnt : Number
  */
  'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
 ```
-
 
 #### Events
 
