@@ -15,7 +15,7 @@ const log = console.log
     , rstream = fs.createReadStream( path )
     ;
 
-log( '\n- Auntie#count example, loading english long words from file in ASYNC way:\n "%s"\n', path );
+log( '\n- Auntie#count example, load english long words from a file in ASYNC way:\n "%s"\n', path );
 
 // uncomment lines below to reduce the stream chunk size to 4 bytes
 // log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );

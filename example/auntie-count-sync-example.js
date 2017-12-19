@@ -10,11 +10,11 @@ const log = console.log
     , pattern = '\r\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
-    // create an async read stream
+    // create a sync read stream
     , fdata = fs.readFileSync( path )
     ;
 
-log( '\n- Auntie#count example, loading english long words from file in SYNC way:\n "%s"\n', path );
+log( '\n- Auntie#count example, load english long words from a file in SYNC way:\n "%s"\n', path );
 log( '- sequence to parse is "\\r\\n" ->', untie.seq );
 log( '- starting parse data stream ..' );
 log( '- counting occurrences ..' );

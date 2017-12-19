@@ -24,6 +24,7 @@
 
 - __[Install](#install)__
 - __[Run Tests](#run-tests)__
+- __[Run Benchmarks](#run-benchmarks)__
 - __[Constructor](#constructor)__
 - __[Properties](#properties)__
 - __[Methods](#methods)__
@@ -63,6 +64,13 @@ var Auntie  = require( 'auntie' );
 
 ```bash
  $ node test/file-name.js
+```
+
+### Run Benchmarks
+
+```bash
+$ cd auntie/
+$ npm run bench
 ```
 
 ### Constructor
