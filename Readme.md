@@ -115,7 +115,7 @@ Auntie.cnt : Number
 |:--------------------------|:-----------------------------------------------------------------|
 | __[count](#auntiecount)__ | `count how many times the sequence appears in a stream of data.` |
 | __[do](#auntiedo)__       | `split a stream of data by the current sequence.`                |
-| __[flush](#auntieflush)__ | `flush the remaining data.`                                      |
+| __[flush](#auntieflush)__ | `flush the remaining data, resetting internal state/counters.`   |
 | __[set](#auntieset)__     | `set a new sequence for splitting data.`                         |
 
 
@@ -148,7 +148,7 @@ Auntie.cnt : Number
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 ```
 #### Auntie.flush
-> ##### flush the remaining data
+> ##### flush the remaining data, resetting internal state/counters
 ```javascript
 /*
  * if collect is true it returns a Buffer, otherwise it emits 
