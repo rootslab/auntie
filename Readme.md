@@ -33,6 +33,7 @@
     - __[set](#auntieset)__    
 - __[Events](#events)__
 - __[Examples](#examples)__
+  - __[count lines](#count-lines-crlf)__ 
 - __[MIT License](#mit-license)__
 
 ### Install
@@ -183,6 +184,10 @@ Auntie.cnt : Number
 > then no event will be emitted.
 
 ### Examples
+
+ #### count lines (CRLF):
+ > - __[sync way](example/auntie-count-sync-example.js)__
+ > - __[async way](example/auntie-count-async-example.js)__
 
 > See __[examples](example/)__.
 

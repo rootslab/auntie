@@ -22,7 +22,7 @@ exports.test  = function ( done, assertions ) {
         , results = sync_load_and_collect( path, pattern )
         ;
 
-    log( '- Auntie#count test, loading english long words from file:\n "%s"\n', path );
+    log( '- Auntie#count test, loading english long words from filee in ASYNC way:\n "%s"\n', path );
     log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 4 bytes
@@ -30,6 +30,7 @@ exports.test  = function ( done, assertions ) {
 
     log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
+    log( '- counting occurrences ..' );
 
     let t = 0
         , c = 0
@@ -39,7 +40,7 @@ exports.test  = function ( done, assertions ) {
         ++c;
         t += chunk.length;
         // count returns me.cnt property, updated/incremented on every call
-        let cnt = untie.count( chunk, true )[ 0 ];
+        let cnt = untie.count( chunk )[ 0 ];
     } );
 
     rstream.on( 'end', function () {
