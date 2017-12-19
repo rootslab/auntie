@@ -183,7 +183,8 @@ Auntie.cnt : Number
 
 ### Examples
 
- #### count lines (CRLF):
+#### count lines (CRLF):
+ 
  > - __[sync way](example/auntie-count-sync-example.js)__
  > - __[async way](example/auntie-count-async-example.js)__
  > - ...
