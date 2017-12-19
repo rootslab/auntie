@@ -20,7 +20,7 @@
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
 > optimized for sequence lengths <= 255 bytes.
 
-# Table of Contents
+### Table of Contents
 
 - __[Install](#install)__
 - __[Run Tests](#run-tests)__
