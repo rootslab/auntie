@@ -160,9 +160,7 @@ Auntie.cnt : Number
 > #### Auntie.set
 > ##### set a new sequence for splitting data.
 ```javascript
-/*
- * the default sequence is '\r\n' or CRLF sequence.
- */
+// default sequence is '\r\n' or CRLF sequence.
  'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
 ```
 
@@ -188,6 +186,7 @@ Auntie.cnt : Number
  #### count lines (CRLF):
  > - __[sync way](example/auntie-count-sync-example.js)__
  > - __[async way](example/auntie-count-async-example.js)__
+ > - ...
 
 > See __[examples](example/)__.
 
