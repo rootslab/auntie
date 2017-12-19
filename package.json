@@ -1,6 +1,6 @@
 {
   "name": "auntie"
-  , "version": "0.11.3"
+  , "version": "0.11.4"
   , "description": "Auntie, my dear ultra-fast module for untying/splitting/counting a stream of data by a chosen sequence."
   , "homepage": "https://github.com/rootslab/auntie"
   , "private": false
