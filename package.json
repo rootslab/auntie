@@ -1,6 +1,6 @@
 {
   "name": "auntie"
-  , "version": "0.12.0"
+  , "version": "0.12.1"
   , "description": "Auntie, my dear ultra-fast module for untying/splitting/counting a stream of data by a chosen sequence/separator."
   , "homepage": "https://github.com/rootslab/auntie"
   , "private": false
@@ -23,7 +23,7 @@
   }
   , "dependencies": {
       "bolgia" : ">=2.8.2"
-      , "bop" : ">=3.3.0"
+      , "bop" : ">=4.0.0"
   },
   "devDependencies": {
      "dado" : ">=0.3.1"
