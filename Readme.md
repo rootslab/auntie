@@ -12,18 +12,20 @@
 
 [![NPM MONTHLY](http://img.shields.io/npm/dm/auntie.svg?style=flat)](http://npm-stat.com/charts.html?package=auntie)
 ![NPM YEARLY](https://img.shields.io/npm/dy/auntie.svg)
+![NPM TOTAL](https://img.shields.io/npm/dt/auntie.svg)
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
-> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting__ a stream of data by a __chosen sequence__.
+> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting/counting__ a stream of data by a __chosen sequence/separator__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
 > optimized for sequence lengths <= 255 bytes.
 
-# Table of Contents
+### Table of Contents
 
 - __[Install](#install)__
 - __[Run Tests](#run-tests)__
+- __[Run Benchmarks](#run-benchmarks)__
 - __[Constructor](#constructor)__
 - __[Properties](#properties)__
 - __[Methods](#methods)__
@@ -33,6 +35,7 @@
     - __[set](#auntieset)__    
 - __[Events](#events)__
 - __[Examples](#examples)__
+  - __[count lines](#count-lines-crlf)__ 
 - __[MIT License](#mit-license)__
 
 ### Install
@@ -62,6 +65,13 @@ var Auntie  = require( 'auntie' );
 
 ```bash
  $ node test/file-name.js
+```
+
+### Run Benchmarks
+
+```bash
+$ cd auntie/
+$ npm run bench
 ```
 
 ### Constructor
@@ -114,7 +124,7 @@ Auntie.cnt : Number
 |:--------------------------|:-----------------------------------------------------------------|
 | __[count](#auntiecount)__ | `count how many times the sequence appears in a stream of data.` |
 | __[do](#auntiedo)__       | `split a stream of data by the current sequence.`                |
-| __[flush](#auntieflush)__ | `flush the remaining data.`                                      |
+| __[flush](#auntieflush)__ | `flush the remaining data, resetting internal state/counters.`   |
 | __[set](#auntieset)__     | `set a new sequence for splitting data.`                         |
 
 
@@ -122,10 +132,12 @@ Auntie.cnt : Number
 > ##### count how many times the sequence appears in a stream of data.
 ```javascript
 /*
- * it updates and returns an Array with the current Auntie.cnt property.
+ * it updates and returns an Array with the current Auntie.cnt
+ * property.
  * 
- * NOTE: It saves the remaining data that does not contains the sequence, for the
- * next #count call with fresh data (to check for overlapping occurrences).
+ * NOTE: It saves the remaining data that does not contains the 
+ * sequence, for the next #count call with fresh data (to check for
+ * overlapping occurrences).
  */
 'count' : function ( Buffer data ) : Array
 ```
@@ -133,18 +145,19 @@ Auntie.cnt : Number
 > ##### split a stream of data by the current sequence
 ```javascript
 /*
- * if collect is true, it returns an Array of results, otherwise it emits a
- * 'snap' event for every match; then, after having finished to parse data,
- * it emits a 'snip' event, with the remaining data that does not contains 
- * the sequence.
+ * if collect is true, it returns an Array of results, otherwise it 
+ * emits a 'snap' event for every match; then, after having finished
+ * to parse data, it emits a 'snip' event, with the remaining data
+ * that does not contains the sequence.
  *
- * NOTE: it saves the remaining data that does not contains the sequence, for the
- * next #do call on fresh data (to check for overlapping matches).
+ * NOTE: it saves the remaining data that does not contains the
+ * sequence, for the next #do call on fresh data (to check for 
+ * overlapping matches).
  */
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 ```
 #### Auntie.flush
-> ##### flush the remaining data
+> ##### flush the remaining data, resetting internal state/counters
 ```javascript
 /*
  * if collect is true it returns a Buffer, otherwise it emits 
@@ -156,9 +169,7 @@ Auntie.cnt : Number
 > #### Auntie.set
 > ##### set a new sequence for splitting data.
 ```javascript
-/*
- * the default sequence is '\r\n' or CRLF sequence.
- */
+// default sequence is '\r\n' or CRLF sequence.
  'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
 ```
 
@@ -180,6 +191,12 @@ Auntie.cnt : Number
 > then no event will be emitted.
 
 ### Examples
+
+#### count lines (CRLF):
+ 
+ > - __[sync way](example/auntie-count-sync-example.js)__
+ > - __[async way](example/auntie-count-async-example.js)__
+ > - ...
 
 > See __[examples](example/)__.
 
