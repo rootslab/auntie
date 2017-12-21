@@ -12,6 +12,7 @@
 
 [![NPM MONTHLY](http://img.shields.io/npm/dm/auntie.svg?style=flat)](http://npm-stat.com/charts.html?package=auntie)
 ![NPM YEARLY](https://img.shields.io/npm/dy/auntie.svg)
+![NPM TOTAL](https://img.shields.io/npm/dt/auntie.svg)
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
