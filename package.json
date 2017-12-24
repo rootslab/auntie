@@ -23,7 +23,7 @@
   }
   , "dependencies": {
       "bolgia" : ">=2.8.2"
-      , "bop" : ">=4.0.0"
+      , "bop" : ">=4.0.1"
   },
   "devDependencies": {
      "dado" : ">=0.3.1"

@@ -1,7 +1,7 @@
 /*
  * Auntie test for collecting results, it loads a file containing 8192
  * long english words, separated by CRLF '\r\n' pattern.
- * For messing things up, the chunk size is reduced to 10 bytes.
+ * For messing things up, the chunk size is reduced to 1 byte.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,7 +12,7 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/long-english-words.txt'
+        , path = __dirname + '/long-english-words-crlf.txt'
         , pattern = '\r\n'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
@@ -23,12 +23,12 @@ exports.test  = function ( done, assertions ) {
         ;
 
     log( '- Auntie !snap event test, loading english long words from file:\n "%s"\n', path );
-    log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+    log( '- current highwatermark value for stream: %d byte(s)', rstream._readableState.highWaterMark );
     
-    // I voluntarily reduce the chunk buffer size to 10 bytes
-    rstream._readableState.highWaterMark = 10;
+    // I voluntarily reduce the chunk buffer size to 1 byte
+    rstream._readableState.highWaterMark = 3;
 
-    log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+    log( '- new highwatermark value for stream: %d byte(s)', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
 
     let m = 0
@@ -37,12 +37,12 @@ exports.test  = function ( done, assertions ) {
         ;
 
     untie.on( 'snap', function ( data ) {
-        let emsg = 'error, different results with match (n°:' + m + ') (expected: ' + results[ m ] + ' is: ' + data + ')'
+        let emsg = 'error, different results with match (n°:' + ( m + 1 ) + ') (expected: "' + results[ m ] + '"" is: "' + data + '")'
             ;
         stdout.clearLine();
         stdout.cursorTo( 0 );
         stdout.write( '  -> current data chunk (' + c + ')' );
-        stdout.write(' !snap (' + m +') (' + data.length + ', ' + data + ')' );
+        stdout.write(' !snap (' + ( m + 1 ) +') (' + data.length + ', ' + data + ')' );
         // check if results (buffers) are equal
         assert.ok( data.compare( results[ m++ ] ) === 0, emsg );
     } );

@@ -1,5 +1,5 @@
 /*
- * Auntie#count test, it loads a file containing 8192
+ * Auntie#dist test, it loads a file containing 8192
  * long english words, separated by CRLF '\r\n' pattern.
  * For "messing" things up, the chunk size is reduced to 4 bytes.
  */
@@ -12,8 +12,8 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/long-english-words.txt'
-        , pattern = '\r\n'
+        , path = __dirname + '/long-english-words-seq.txt'
+        , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
         // create an async read stream
@@ -26,7 +26,7 @@ exports.test  = function ( done, assertions ) {
     log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 4 bytes
-    rstream._readableState.highWaterMark = 4;
+    rstream._readableState.highWaterMark = 1;
 
     log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
@@ -34,13 +34,14 @@ exports.test  = function ( done, assertions ) {
 
     let t = 0
         , c = 0
+        , reply = null
         ;
 
     rstream.on( 'data', function ( chunk ) {
         ++c;
         t += chunk.length;
         // count returns me.cnt property, updated/incremented on every call
-        let cnt = untie.count( chunk )[ 0 ];
+        reply = untie.dist( chunk );
     } );
 
     rstream.on( 'end', function () {
@@ -50,8 +51,8 @@ exports.test  = function ( done, assertions ) {
     rstream.on( 'close', function () {
         log( '- !close stream' );
 
-        let emsg = '#count error, got: ' + untie.cnt + ') (expected: ' + results.length + ')'
-            , cnt = untie.cnt
+        let emsg = '#count error, got: ' + untie.cnt[ 0 ] + ') (expected: ' + results.length + ')'
+            , cnt = untie.cnt[ 0 ]
             ;
         assert.ok( cnt === results.length, emsg );
         
@@ -61,7 +62,7 @@ exports.test  = function ( done, assertions ) {
         log( '\n- total matches: %d', cnt );
         log( '- total data chunks: %d ', c );
         log( '- total data length: %d bytes', t );
-
+log( reply )
         exit();
     } );
 

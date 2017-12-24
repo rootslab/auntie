@@ -1,7 +1,7 @@
 /*
- * Auntie test for collecting results, it loads a file containing 8192
+ * Auntie#count test, it loads a file containing 8192
  * long english words, separated by CRLF '\r\n' pattern.
- * For "messing" things up, the chunk size is reduced to 10 bytes.
+ * For "messing" things up, the chunk size is reduced to 4 bytes.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,7 +12,7 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/long-english-words.txt'
+        , path = __dirname + '/long-english-words-crlf.txt'
         , pattern = '\r\n'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
@@ -22,27 +22,25 @@ exports.test  = function ( done, assertions ) {
         , results = sync_load_and_collect( path, pattern )
         ;
 
-    log( '- Auntie collecting test, loading english long words from file:\n "%s"\n', path );
+    log( '- Auntie#count test, loading english long words from filee in ASYNC way:\n "%s"\n', path );
     log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
-    // I voluntarily reduce the chunk buffer size to 10 bytes
-    rstream._readableState.highWaterMark = 10;
+    // I voluntarily reduce the chunk buffer size to 4 bytes
+    rstream._readableState.highWaterMark = 4;
 
     log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
+    log( '- counting occurrences ..' );
 
     let t = 0
         , c = 0
-        , collected = []
         ;
 
     rstream.on( 'data', function ( chunk ) {
         ++c;
         t += chunk.length;
-        // concat current results to collected array
-        let curr = untie.do( chunk, true );
-        // concat, test results later, on 'close' event
-        if ( curr.length ) collected = collected.concat( curr );
+        // count returns me.cnt property, updated/incremented on every call
+        let cnt = untie.count( chunk )[ 0 ];
     } );
 
     rstream.on( 'end', function () {
@@ -52,25 +50,18 @@ exports.test  = function ( done, assertions ) {
     rstream.on( 'close', function () {
         log( '- !close stream' );
 
-        let emsg = null
-            , el = collected[ 0 ]
-            , i = 0
+        let emsg = '#count error, got: ' + untie.cnt[ 0 ] + ') (expected: ' + results.length + ')'
+            , cnt = untie.cnt[ 0 ]
             ;
-        for ( ; i < collected.length; el = collected[ ++i ] ) {
-            emsg = 'error, different results with match (n°:' + i + ') (expected: ' + results[ i ] + ' is: ' + el + ')';
-            stdout.clearLine();
-            stdout.cursorTo( 0 );
-            stdout.write('  -> check collected results (' + ( i + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
-            // check if results (buffers) are equal
-            assert.ok( el.compare( results[ i ] ) === 0, emsg );
-        }
-
+        assert.ok( cnt === results.length, emsg );
+        
         log( '\n- total matches should be: %d', results.length );
-        assert.ok( i === results.length );
-
-        log( '\n- total matches: %d', i );
+        assert.ok( cnt === results.length );
+        
+        log( '\n- total matches: %d', cnt );
         log( '- total data chunks: %d ', c );
         log( '- total data length: %d bytes', t );
+
         exit();
     } );
 

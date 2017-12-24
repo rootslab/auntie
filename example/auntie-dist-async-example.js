@@ -1,5 +1,5 @@
 /*
- * Auntie#count example it (ASYNC) loads a file containing 8192 long english words,
+ * Auntie#dist example it (ASYNC) loads a file containing 8192 long english words,
  * separated by CRLF '\r\n' sequence
  * For "messing" things up, you could reduce the chunk size to 4 bytes.
  */
@@ -7,8 +7,8 @@
 const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , path = __dirname + '/long-english-words.txt'
-    , pattern = '\r\n'
+    , path = __dirname + '/some-english-words.txt'
+    , pattern = '\r\n->'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
     // create an async read stream
@@ -20,7 +20,7 @@ log( '\n- Auntie#count example, load english long words from a file in ASYNC way
 // uncomment lines below to reduce the stream chunk size to 4 bytes
 // log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
 // I voluntarily reduce the chunk buffer size to 4 bytes
-// rstream._readableState.highWaterMark = 4;
+rstream._readableState.highWaterMark = 1;
 // log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
 
 log( '- sequence to parse is "\\r\\n" ->', untie.seq );
@@ -29,12 +29,17 @@ log( '- counting occurrences in the data stream..' );
 
 let chunks = 0
     , tot = 0
+    , result = null
     ;
 
 rstream.on( 'data', function ( chunk ) {
     ++chunks;
     tot += chunk.length;
-    let cnt = untie.count( chunk )[ 0 ];
+    log()
+    log( 'c:', chunk )
+    result = untie.dist( chunk );
+    log( 'r:', result )
+    log()
 } );
 
 rstream.on( 'end', function () {
@@ -45,5 +50,6 @@ rstream.on( 'close', function () {
     log( '- !close stream' );
     log( '\n- total data length: %d bytes', tot );
     log( '- total data chunks: %d ', chunks );
-    log( '\n- total matches: %d\n', untie.cnt[ 0 ] );
+    log( '\n- total matches: %d', result[ 0 ] );
+    log( '- max length: %d bytes\n', result[ 1 ] );
 } );

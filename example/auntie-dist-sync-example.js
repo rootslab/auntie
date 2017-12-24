@@ -1,5 +1,5 @@
 /*
- * Auntie#count example, it (SYNC) loads a file containing 8192 long english words,
+ * Auntie#dist example, it (SYNC) loads a file containing 8192 long english words,
  * separated by CRLF '\r\n' sequence.
  */
 
@@ -14,12 +14,13 @@ const log = console.log
     , fdata = fs.readFileSync( path )
     ;
 
-log( '\n- Auntie#count example, load english long words from a file in SYNC way:\n "%s"\n', path );
+log( '\n- Auntie#dist example, load english long words from a file in SYNC way:\n "%s"\n', path );
 log( '- sequence to parse is "\\r\\n" ->', untie.seq );
 log( '- starting parse data stream ..' );
 log( '- counting occurrences ..' );
 
-let cnt = untie.count( fdata )[ 0 ];
+let result = untie.dist( fdata );
 
 log( '\n- total data length: %d bytes', fdata.length );
-log( '\n- total matches: %d\n', cnt );
+log( '\n- total matches: %d', result[ 0 ] );
+log( '- max length: %d bytes\n', result[ 1 ] );
