@@ -37,6 +37,7 @@
 - __[Events](#events)__
 - __[Examples](#examples)__
   - __[count lines](#count-lines-crlf)__ 
+  . __[snap event and collect](#snap-event-and-collect-crlf)
 - __[MIT License](#mit-license)__
 
 ### Install
@@ -216,13 +217,10 @@ Auntie.cnt : Array
  
  > - __[count sync](example/auntie-count-sync-example.js)__
  > - __[count async](example/auntie-count-async-example.js)__
- 
-#### count lines, max/min line length (CRLF):
-
- > - __[dist sync](example/auntie-dist-async-example.js)__
+ > - __[dist sync](example/auntie-dist-sync-example.js)__
  > - __[dist async](example/auntie-dist-async-example.js)__
  
-#### !snap event and collect (CRLF):
+#### snap event and collect (CRLF):
 
  > - __[snap](example/auntie-snap-event-example.js)__
  > - __[collect](example/auntie-collect-results-example.js)__
