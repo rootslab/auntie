@@ -153,6 +153,7 @@ Auntie.cnt : Array
  * - the remaining bytes to the end of data (without any matching sequence)
  * 
  * NOTE:
+ * - also the distance from index 0 to the first match will be considered
  * - it saves the remaining data that does not contains the sequence,
  * for the next #dist call with fresh data, to check for occurrences
  * between chunks).
