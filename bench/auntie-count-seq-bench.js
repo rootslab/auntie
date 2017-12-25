@@ -1,5 +1,5 @@
 /*
- * Auntie example, it (SYNC) loads a file containing 8192 long english words,
+ * Auntie benchmark, it (SYNC) loads a file containing 8192 long english words,
  * separated by CRLF '\r\n' sequence, then we build a test buffer repeating
  * the data loaded for 512 times.
  */
@@ -8,8 +8,8 @@ const log = console.log
     , now = Date.now
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , path = __dirname + '/long-english-words.txt'
-    , pattern = '\r\n'
+    , path = __dirname + '/long-english-words-seq.txt'
+    , pattern = '-----'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
     ;
