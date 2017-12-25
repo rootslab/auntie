@@ -48,6 +48,23 @@ log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
 log( '\n- flush data and reset internal state..' );
 untie.flush( true );
 
+log( '\n-> counting occurrences using #dist..' );
+
+stime = now();
+cnt = untie.dist( fdata )[ 0 ];
+etime = now();
+secs = ( etime - stime ) / 1000;
+perc = ( 100 * cnt * untie.seq.length / fdata.length ).toFixed( 2 );
+
+log( ' - elapsed: %d secs', secs );
+log( ' - total matches: %d', cnt );
+log( ' - total percentage of matching data: %d%', perc );
+log( ' - %d ops/sec', ( cnt / secs ).toFixed( 2 ) );
+log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
+
+log( '\n- flush data and reset internal state..' );
+untie.flush( true );
+
 log( '\n-> parsing occurrences using #do..' );
 
 stime = now();

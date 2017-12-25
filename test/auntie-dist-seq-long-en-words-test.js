@@ -50,15 +50,12 @@ exports.test  = function ( done, assertions ) {
             , c = 0
             // create an async read stream
             , rstream = fs.createReadStream( path )
-            ;
-
-        log( '\n- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
-        
+            ;       
 
         // voluntarily reduce the chunk buffer size to k byte(s)
         rstream._readableState.highWaterMark = csize;
 
-        log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+        log( '\n- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
         log( '- starting parse data stream..' );
         log( '- counting occurrences ..' );
 
