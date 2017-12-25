@@ -22,5 +22,7 @@ log( '- counting occurrences ..' );
 let result = untie.dist( fdata );
 
 log( '\n- total data length: %d bytes', fdata.length );
-log( '\n- total matches: %d', result[ 0 ] );
-log( '- max length: %d bytes\n', result[ 1 ] );
+log( '- total matches: %d (lines)', result[ 0 ] );
+log( '\n- min length: %d bytes', result[ 1 ] );
+log( '- max length: %d bytes', result[ 2 ] );
+log( '- remaining : %d bytes\n', result[ 3 ] );

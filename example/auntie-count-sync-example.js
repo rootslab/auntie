@@ -22,4 +22,4 @@ log( '- counting occurrences ..' );
 let cnt = untie.count( fdata )[ 0 ];
 
 log( '\n- total data length: %d bytes', fdata.length );
-log( '\n- total matches: %d\n', cnt );
+log( '\n- total matches: %d (lines)\n', cnt );

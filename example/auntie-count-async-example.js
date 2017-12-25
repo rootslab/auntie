@@ -45,5 +45,5 @@ rstream.on( 'close', function () {
     log( '- !close stream' );
     log( '\n- total data length: %d bytes', tot );
     log( '- total data chunks: %d ', chunks );
-    log( '\n- total matches: %d\n', untie.cnt[ 0 ] );
+    log( '\n- total matches: %d (lines)\n', untie.cnt[ 0 ] );
 } );

@@ -214,9 +214,18 @@ Auntie.cnt : Array
 
 #### count lines (CRLF):
  
- > - __[sync way](example/auntie-count-sync-example.js)__
- > - __[async way](example/auntie-count-async-example.js)__
- > - ...
+ > - __[count sync](example/auntie-count-sync-example.js)__
+ > - __[count async](example/auntie-count-async-example.js)__
+ 
+#### count lines, max/min line length (CRLF):
+
+ > - __[dist sync](example/auntie-dist-async-example.js)__
+ > - __[dist async](example/auntie-dist-async-example.js)__
+ 
+#### !snap event and collect (CRLF):
+
+ > - __[snap](example/auntie-snap-event-example.js)__
+ > - __[collect](example/auntie-collect-results-example.js)__
 
 > See __[examples](example/)__.
 
