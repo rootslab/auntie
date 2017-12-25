@@ -111,36 +111,55 @@ Auntie.snip : Buffer
 Auntie.csnip : Buffer
 ```
 
-##### the current number of matches (updated by #count).
+##### the current number of matches, min/max distance, remaining bytes.
 ```javascript
-Auntie.cnt : Number
+Auntie.cnt : Array
 ```
 
 ### Methods
 
 > Arguments between [ ] are optional.
 
-|            name           |                           description                            |
-|:--------------------------|:-----------------------------------------------------------------|
-| __[count](#auntiecount)__ | `count how many times the sequence appears in a stream of data.` |
-| __[do](#auntiedo)__       | `split a stream of data by the current sequence.`                |
-| __[flush](#auntieflush)__ | `flush the remaining data, resetting internal state/counters.`   |
-| __[set](#auntieset)__     | `set a new sequence for splitting data.`                         |
+|            name           |                                 description                                      |
+|:--------------------------|:---------------------------------------------------------------------------------|
+| __[count](#auntiecount)__ | `count (only) how many times the sequence appears in the current data.`          |
+| __[dist](#auntiedist)__   | `count occurrences, min and max distance between sequences and remaining bytes.` |
+| __[do](#auntiedo)__       | `split a stream of data by the current sequence.`                                |
+| __[flush](#auntieflush)__ | `flush the remaining data, resetting internal state/counters.`                   |
+| __[set](#auntieset)__     | `set a new sequence for splitting data.`                                         |
 
 
 #### Auntie.count
-> ##### count how many times the sequence appears in a stream of data.
+> ##### count only how many times the sequence appears in the current data.
 ```javascript
 /*
- * it updates and returns an Array with the current Auntie.cnt
- * property.
+ * it returns an Array with the current number of occurrences.
  * 
  * NOTE: It saves the remaining data that does not contains the 
  * sequence, for the next #count call with fresh data (to check for
- * overlapping occurrences).
+ * occurrences between chunks).
  */
 'count' : function ( Buffer data ) : Array
 ```
+#### Auntie.dist
+> ##### count occurrences, min and max distance between sequences and remaining bytes.|
+```javascript
+/*
+ * it returns an Array with:
+ * - the current number of occurrences 
+ * - the minimum distance, in bytes, between any 2 sequences
+ * - the maximum distance, in bytes, between any 2 sequences
+ * - the remaining bytes, without any matching sequence
+ * 
+ * NOTE:
+ * -  
+ * - it saves the remaining data that does not contains the 
+ * sequence, for the next #dist call with fresh data (to check for
+ * occurrences between chunks).
+ */
+'dist' : function ( Buffer data ) : Array
+```
+
 #### Auntie.do
 > ##### split a stream of data by the current sequence
 ```javascript
@@ -152,7 +171,7 @@ Auntie.cnt : Number
  *
  * NOTE: it saves the remaining data that does not contains the
  * sequence, for the next #do call on fresh data (to check for 
- * overlapping matches).
+ * occurrences between chunks).
  */
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 ```

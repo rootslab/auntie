@@ -1,6 +1,6 @@
 /*
  * Auntie test for collecting results, it loads a file containing 8192
- * long english words, separated by CRLF '\r\n' pattern.
+ * long english words, separated by '-----' sequence.
  * For messing things up, the chunk size is reduced to 1 byte.
  */
 

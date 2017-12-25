@@ -1,7 +1,7 @@
 /*
  * Auntie test for collecting results, it loads a file containing 8192
- * long english words, separated by CRLF '\r\n' pattern.
- * For messing things up, the chunk size is reduced to 1 byte.
+ * long english words, separated by CRLF '\r\n' sequence.
+ * For messing things up, the chunk size is reduced to 2 byte.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -25,8 +25,8 @@ exports.test  = function ( done, assertions ) {
     log( '- Auntie !snap event test, loading english long words from file:\n "%s"\n', path );
     log( '- current highwatermark value for stream: %d byte(s)', rstream._readableState.highWaterMark );
     
-    // I voluntarily reduce the chunk buffer size to 1 byte
-    rstream._readableState.highWaterMark = 3;
+    // I voluntarily reduce the chunk buffer size to 2 byte
+    rstream._readableState.highWaterMark = 2;
 
     log( '- new highwatermark value for stream: %d byte(s)', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );

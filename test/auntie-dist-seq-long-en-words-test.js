@@ -1,7 +1,7 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
- * long english words, separated by CRLF '\r\n' pattern.
- * For "messing" things up, the chunk size is reduced to 4 bytes.
+ * long english words, separated by '-----' sequence.
+ * For "messing" things up, the chunk size is reduced to 1 byte.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -25,8 +25,8 @@ exports.test  = function ( done, assertions ) {
     log( '- Auntie#count test, loading english long words from filee in ASYNC way:\n "%s"\n', path );
     log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
-    // I voluntarily reduce the chunk buffer size to 4 bytes
-    rstream._readableState.highWaterMark = 1;
+    // I voluntarily reduce the chunk buffer size to 1 byte
+    rstream._readableState.highWaterMark = 5;
 
     log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
@@ -62,7 +62,6 @@ exports.test  = function ( done, assertions ) {
         log( '\n- total matches: %d', cnt );
         log( '- total data chunks: %d ', c );
         log( '- total data length: %d bytes', t );
-log( reply )
         exit();
     } );
 
