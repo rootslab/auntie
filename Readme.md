@@ -37,7 +37,7 @@
 - __[Events](#events)__
 - __[Examples](#examples)__
   - __[count lines](#count-lines-crlf)__ 
-  . __[snap event and collect](#snap-event-and-collect-crlf)
+  - __[snap event and collect](#snap-event-and-collect-crlf)
 - __[MIT License](#mit-license)__
 
 ### Install
