@@ -130,29 +130,28 @@ Auntie.cnt : Array
 
 
 #### Auntie.count
-> ##### count only how many times the sequence appears in the current data.
+> ##### the fastest/lightest way to count many times the sequence appears in the current data.
 ```javascript
 /*
  * it returns an Array with the current number of occurrences.
  * 
- * NOTE: It saves the remaining data that does not contains the 
- * sequence, for the next #count call with fresh data (to check for
- * occurrences between chunks).
+ * NOTE: it saves the minimum necessary data that does not contains
+ * the sequence, for the next #count call with fresh data (to check
+ * for single occurrences between 2 chunks of data).
  */
 'count' : function ( Buffer data ) : Array
 ```
 #### Auntie.dist
-> ##### count occurrences, min and max distance between sequences and remaining bytes.|
+> ##### count occurrences, min and max distance between sequences and remaining bytes.
 ```javascript
 /*
  * it returns an Array with:
  * - the current number of occurrences 
  * - the minimum distance, in bytes, between any 2 sequences
  * - the maximum distance, in bytes, between any 2 sequences
- * - the remaining bytes, without any matching sequence
+ * - the remaining bytes to the end of data (without any matching sequence)
  * 
  * NOTE:
- * -  
  * - it saves the remaining data that does not contains the 
  * sequence, for the next #dist call with fresh data (to check for
  * occurrences between chunks).
