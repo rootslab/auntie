@@ -19,7 +19,7 @@ exports.test  = function ( done, assertions ) {
         // create an async read stream
         , rstream = fs.createReadStream( path )
         //  sync load file and collect results to test Auntie correctness
-        , results = sync_load_and_collect( path, pattern )
+        , results = sync_load_and_collect( path, pattern, true )[ 0 ]
         ;
 
     log( '- Auntie collecting test, loading english long words from file:\n "%s"\n', path );

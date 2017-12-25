@@ -17,10 +17,10 @@ exports.test  = function ( done, assertions ) {
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
         //  sync load file and collect results to test Auntie correctness
-        , results = sync_load_and_collect( path, pattern )
+        , results = sync_load_and_collect( path, pattern, true )[ 0 ]
         ;
 
-    log( '- Auntie#count test, loading english long words from filee in ASYNC way:\n "%s"', path );
+    log( '- Auntie#count test, loading english long words from file in ASYNC way:\n "%s"', path );
 
     var run = function ( csize ) {
     

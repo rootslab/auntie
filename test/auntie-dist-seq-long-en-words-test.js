@@ -1,7 +1,7 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
  * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is reduced to 1 byte.
+ * For "messing" things up, the chunk size is reduced to k byte(s).
  */
 
 exports.test  = function ( done, assertions ) {
@@ -19,52 +19,91 @@ exports.test  = function ( done, assertions ) {
         // create an async read stream
         , rstream = fs.createReadStream( path )
         //  sync load file and collect results to test Auntie correctness
-        , results = sync_load_and_collect( path, pattern )
+        , results = sync_load_and_collect( path, pattern, true )
+        , buffers = results[ 0 ]
+        , distances = results[ 1 ]
+        , matches = results[ 2 ]
+        // length of data loaded
+        , llen = results[ 3 ]
         ;
 
-    log( '- Auntie#count test, loading english long words from filee in ASYNC way:\n "%s"\n', path );
-    log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+    log( '- Auntie#dist test, loading english long words from file in ASYNC way:\n "%s"', path );
+
+    log( '- calculate max, min, .. for testing correctness..' );    
+    let i = 1
+        , dlen = distances.length
+        , blen = buffers.length
+        , mlen = matches.length
+        , rcnt = [ blen, Infinity, -Infinity, llen - matches[ mlen - 1 ] - untie.seq.length ]
+        , val = distances[ 0 ]
+        ;
+    for ( ; i < dlen; val = distances[ ++i ] ) {
+        // TODO
+        if ( val < rcnt[ 1 ] ) rcnt[ 1 ] = val;
+        else if ( val > rcnt[ 2 ] ) rcnt[ 2 ] = val;
+    }
+    log( '- values to obtain are: ', rcnt );    
+
+    var run = function ( csize ) {
     
-    // I voluntarily reduce the chunk buffer size to 1 byte
-    rstream._readableState.highWaterMark = 5;
-
-    log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
-    log( '- starting parse data stream..' );
-    log( '- counting occurrences ..' );
-
-    let t = 0
-        , c = 0
-        , reply = null
-        ;
-
-    rstream.on( 'data', function ( chunk ) {
-        ++c;
-        t += chunk.length;
-        // count returns me.cnt property, updated/incremented on every call
-        reply = untie.dist( chunk );
-    } );
-
-    rstream.on( 'end', function () {
-        log( '- !end stream' );
-    } );
-
-    rstream.on( 'close', function () {
-        log( '- !close stream' );
-
-        let emsg = '#count error, got: ' + untie.cnt[ 0 ] + ') (expected: ' + results.length + ')'
-            , cnt = untie.cnt[ 0 ]
+         let t = 0
+            , c = 0
+            // create an async read stream
+            , rstream = fs.createReadStream( path )
             ;
-        assert.ok( cnt === results.length, emsg );
-        
-        log( '\n- total matches should be: %d', results.length );
-        assert.ok( cnt === results.length );
-        
-        log( '\n- total matches: %d', cnt );
-        log( '- total data chunks: %d ', c );
-        log( '- total data length: %d bytes', t );
-        exit();
-    } );
 
+        log( '\n- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+        
+
+        // voluntarily reduce the chunk buffer size to k byte(s)
+        rstream._readableState.highWaterMark = csize;
+
+        log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+        log( '- starting parse data stream..' );
+        log( '- counting occurrences ..' );
+
+        rstream.on( 'data', function ( chunk ) {
+            ++c;
+            t += chunk.length;
+            // count returns me.cnt property, updated/incremented on every call
+            reply = untie.dist( chunk );
+        } );
+
+        rstream.on( 'end', function () {
+            log( '- !end stream' );
+        } );
+
+        rstream.on( 'close', function () {
+            log( '- !close stream' );
+
+            let emsg = '#count error, got: ' + untie.cnt[ 0 ] + ') (expected: ' + buffers.length + ')'
+                , cnt = reply[ 0 ]
+                , min = reply[ 1 ]
+                , max = reply[ 2 ]
+                , rbytes = reply[ 3 ]
+                ;
+            assert.ok( cnt === buffers.length, emsg );
+            
+            log( '\n- total matches should be: %d', buffers.length );
+            assert.ok( cnt === buffers.length );
+            
+            log( '\n- total matches: %d', cnt );
+            log( '- total data chunks: %d ', c );
+            log( '- total data length: %d bytes', t );
+
+            log( '- check #dist results: ', reply );
+            assert.deepEqual( rcnt, reply, 'erroneous #dist reply!' );
+
+            // flush data
+            untie.flush();
+
+            // increment chunk size and run test until size is plen * 2
+            if ( csize < untie.seq.length << 1 ) run( ++csize );
+            else exit();
+        } );
+    };
+    // start with 1 byte chunk
+    run( 1 );
 };
 
 // single test execution with node

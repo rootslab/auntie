@@ -13,13 +13,14 @@ module.exports = ( function () {
                 , i = 0
                 , m = 0
                 , results = []
+                , dist = []
                 ;
             for ( ; i < mlen; l = matches[ ++i ] ) {
                 // skip empty results
-                if ( l !== m ) results.push( data.slice( m, l ) );
+                if ( l !== m ) results.push( data.slice( m, l ) ) && dist.push( l - m );
                 m = l + plen;
             }
-            return results;
+            return [ results, dist, matches, data.length ];
         }
         ;
     return sync_load_and_collect;
