@@ -30,6 +30,7 @@
 - __[Properties](#properties)__
 - __[Methods](#methods)__
     - __[count](#auntiecount)__
+    - __[dist](#auntiedist)__
     - __[do](#auntiedo)__
     - __[flush](#auntieflush)__
     - __[set](#auntieset)__    
@@ -152,9 +153,9 @@ Auntie.cnt : Array
  * - the remaining bytes to the end of data (without any matching sequence)
  * 
  * NOTE:
- * - it saves the remaining data that does not contains the 
- * sequence, for the next #dist call with fresh data (to check for
- * occurrences between chunks).
+ * - it saves the remaining data that does not contains the sequence,
+ * for the next #dist call with fresh data, to check for occurrences
+ * between chunks).
  */
 'dist' : function ( Buffer data ) : Array
 ```
