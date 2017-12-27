@@ -40,6 +40,8 @@
   - __[snap event and collect](#snap-event-and-collect-crlf)__
 - __[MIT License](#mit-license)__
 
+------------------------------------------------------------------------------
+
 ### Install
 
 ```bash
@@ -143,6 +145,7 @@ Auntie.cnt : Array
  */
 'count' : function ( Buffer data ) : Array
 ```
+
 #### Auntie.dist
 > ##### count occurrences, min and max distance between sequences and remaining bytes.
 ```javascript
@@ -177,6 +180,7 @@ Auntie.cnt : Array
  */
 'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
 ```
+
 #### Auntie.flush
 > ##### flush the remaining data, resetting internal state/counters
 ```javascript
@@ -187,6 +191,7 @@ Auntie.cnt : Array
  */
 'flush' : function ( [ Boolean collect ] ) : [ Buffer snip ]
 ```
+
 > #### Auntie.set
 > ##### set a new sequence for splitting data.
 ```javascript
