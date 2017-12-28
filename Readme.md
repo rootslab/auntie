@@ -159,8 +159,8 @@ Auntie.cnt : Array
  * NOTE:
  * - also the distance from index 0 to the first match will be considered
  * - it saves the remaining data that does not contains the sequence,
- * for the next #dist call with fresh data, to check for occurrences
- * between chunks).
+ *   for the next #dist call with fresh data, to check for occurrences
+ *   between chunks).
  */
 'dist' : function ( Buffer data ) : Array
 ```
