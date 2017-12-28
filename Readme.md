@@ -51,8 +51,9 @@ $ npm install auntie [-g]
 > __require__:
 
 ```javascript
-var Auntie  = require( 'auntie' );
+const Auntie  = require( 'auntie' );
 ```
+
 ### Run Tests
 
 > __to run all test files, install devDependencies:__
@@ -122,8 +123,6 @@ Auntie.cnt : Array
 
 ### Methods
 
-> Arguments between [ ] are optional.
-
 |            name           |                                 description                                      |
 |:--------------------------|:---------------------------------------------------------------------------------|
 | __[count](#auntiecount)__ | `count (only) how many times the sequence appears in the current data.`          |
@@ -132,6 +131,7 @@ Auntie.cnt : Array
 | __[flush](#auntieflush)__ | `flush the remaining data, resetting internal state/counters.`                   |
 | __[set](#auntieset)__     | `set a new sequence for splitting data.`                                         |
 
+> Arguments between [ ] are optional.
 
 #### Auntie.count
 > ##### the fastest/lightest way to count many times the sequence appears in the current data.
