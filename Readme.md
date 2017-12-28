@@ -220,10 +220,10 @@ Auntie.cnt : Array
 
 #### count lines (CRLF):
  
- > - __[count sync](example/auntie-count-sync-example.js)__
- > - __[count async](example/auntie-count-async-example.js)__
- > - __[dist sync](example/auntie-dist-sync-example.js)__
- > - __[dist async](example/auntie-dist-async-example.js)__
+ > - __[count sync](example/auntie-count-sync-load-example.js)__
+ > - __[dist sync](example/auntie-dist-sync-load-example.js)__
+ > - __[count stream](example/auntie-count-async-stream-example.js)__
+ > - __[dist stream](example/auntie-dist-async-stream-example.js)__
  
 #### snap event and collect (CRLF):
 
