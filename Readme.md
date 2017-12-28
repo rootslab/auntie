@@ -79,6 +79,8 @@ $ cd auntie/
 $ npm run bench
 ```
 
+------------------------------------------------------------------------------
+
 ### Constructor
 
 > Arguments between [ ] are optional.
@@ -120,6 +122,8 @@ Auntie.csnip : Buffer
 ```javascript
 Auntie.cnt : Array
 ```
+
+------------------------------------------------------------------------------
 
 ### Methods
 
@@ -199,6 +203,8 @@ Auntie.cnt : Array
  'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
 ```
 
+------------------------------------------------------------------------------
+
 ### Events
 
 > Auntie emits only __2__ types of events: __`snap`__ and __`snip`__.
@@ -215,6 +221,8 @@ Auntie.cnt : Array
 
 > __NOTE__: if the '_collect_' switch for the __do__/__flush__ was set (true),
 > then no event will be emitted.
+
+------------------------------------------------------------------------------
 
 ### Examples
 
