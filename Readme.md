@@ -11,8 +11,8 @@
 [![DEVDEPENDENCY STATUS](http://img.shields.io/david/dev/rootslab/auntie.svg?style=flat)](https://david-dm.org/rootslab/auntie#info=devDependencies)
 
 [![NPM MONTHLY](http://img.shields.io/npm/dm/auntie.svg?style=flat)](http://npm-stat.com/charts.html?package=auntie)
-![NPM YEARLY](https://img.shields.io/npm/dy/auntie.svg)
-![NPM TOTAL](https://img.shields.io/npm/dt/auntie.svg)
+[![NPM YEARLY](https://img.shields.io/npm/dy/auntie.svg)](http://npm-stat.com/charts.html?package=auntie)
+[![NPM TOTAL](https://img.shields.io/npm/dt/auntie.svg)](http://npm-stat.com/charts.html?package=auntie)
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
