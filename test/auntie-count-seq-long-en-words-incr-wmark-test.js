@@ -18,6 +18,12 @@ exports.test  = function ( done, assertions ) {
         , untie = Auntie( pattern )
         //  sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
+        //random numbers
+        , rand = ( min, max ) => {
+            min = + min || 0;
+            max = + max || 4000;
+            return min + Math.floor( Math.random() * ( max - min + 1 ) );
+        }
         ;
 
     log( '- Auntie#count test, loading english long words from file in ASYNC way:\n "%s"', path );
@@ -33,23 +39,24 @@ exports.test  = function ( done, assertions ) {
         // voluntarily reduce the chunk buffer size to k byte(s)
         rstream._readableState.highWaterMark = csize;
 
-        log( '\n- starting value for stream highwatermark: %d bytes', rstream._readableState.highWaterMark );
-        log( '- starting parse data stream..' );
+        log( '\n- starting parse data stream..' );
         log( '- counting occurrences ..' );
+        log( '- starting value for stream highwatermark: %d bytes', rstream._readableState.highWaterMark );
 
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
-            rstream.pause();
-            rstream._readableState.highWaterMark = c + 1;
-            rstream.resume();
-            // rstream._readableState.highWaterMark = c;
+            // change watermark to pseudo-random integer
+            rstream._readableState.highWaterMark = rand( 1, c );
+            stdout.clearLine();
+            stdout.cursorTo( 0 );
+            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
             // count returns me.cnt property, updated/incremented on every call
             let cnt = untie.count( chunk )[ 0 ];
         } );
 
         rstream.on( 'end', function () {
-            log( '- !end stream' );
+            log( '\n- !end stream' );
         } );
 
         rstream.on( 'close', function () {
@@ -69,7 +76,7 @@ exports.test  = function ( done, assertions ) {
 
             // flush data
             untie.flush();
-            
+
             exit();
             // increment chunk size and run test until size is plen * 2
             // if ( csize < untie.seq.length << 1 ) run( ++csize );
