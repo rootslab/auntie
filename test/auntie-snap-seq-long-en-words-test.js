@@ -16,7 +16,7 @@ exports.test  = function ( done, assertions ) {
         , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
-        //  sync load file and collect results to test Auntie correctness
+        // sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
         ;
 
@@ -56,8 +56,6 @@ exports.test  = function ( done, assertions ) {
          // create an async read stream
          rstream = fs.createReadStream( path );
          
-
-
         // voluntarily reduce the chunk buffer size to k byte
         rstream._readableState.highWaterMark = csize;
 
