@@ -47,10 +47,10 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = rand( 1, c );
+            rstream._readableState.highWaterMark = rand( 1, 64 );
             stdout.clearLine();
             stdout.cursorTo( 0 );
-            //stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
+            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
             // count returns me.cnt property, updated/incremented on every call
             let cnt = untie.count( chunk )[ 0 ];
         } );
@@ -62,7 +62,7 @@ exports.test  = function ( done, assertions ) {
         rstream.on( 'close', function () {
             log( '- !close stream' );
 
-            let emsg = '#count error, got: ' + untie.cnt[ 0 ] + ') (expected: ' + results.length + ')'
+            let emsg = '\n#count error, got: ' + untie.cnt[ 0 ] + ') (expected: ' + results.length + ')'
                 , cnt = untie.cnt[ 0 ]
                 ;
             assert.ok( cnt === results.length, emsg );
@@ -72,7 +72,8 @@ exports.test  = function ( done, assertions ) {
             
             log( '\n- total matches: %d', cnt );
             log( '- total data chunks: %d ', c );
-            log( '- total data length: %d bytes', t );
+            log( '- total data length: %d byte(s)', t );
+            log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
 
             // flush data
             untie.flush();

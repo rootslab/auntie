@@ -76,7 +76,9 @@ exports.test  = function ( done, assertions ) {
 
         log( '- total matches: %d', m );
         log( '- total data chunks: %d ', c );
-        log( '- total data length: %d bytes', t );
+        log( '- total data length: %d byte(s)', t );
+        log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
+        // exit test
         exit();
     } );
 

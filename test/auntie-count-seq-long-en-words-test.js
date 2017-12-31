@@ -61,7 +61,8 @@ exports.test  = function ( done, assertions ) {
             
             log( '\n- total matches: %d', cnt );
             log( '- total data chunks: %d ', c );
-            log( '- total data length: %d bytes', t );
+            log( '- total data length: %d byte(s)', t );
+            log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
 
             // flush data
             untie.flush();
