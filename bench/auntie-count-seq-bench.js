@@ -27,7 +27,7 @@ fdata = Buffer.concat( arr );
 
 
 log( '- Auntie#count benchmark, load english long words from a file in SYNC way:\n "%s"\n', path );
-log( '- sequence to parse is "\\r\\n" ->', untie.seq );
+log( '- sequence to parse is "%s" ->', untie.seq );
 log( '- sequence length: %d bytes', untie.seq.length );
 log( '\n-> total data length: %d MBytes', fdata.length >>> 20 );
 
