@@ -20,7 +20,7 @@ exports.test  = function ( done, assertions ) {
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
         ;
 
-    log( '- Auntie !snap event test, loading english long words from file:\n "%s"\n', path );
+    log( '- Auntie !snap event test, loading english long words from file:\n "%s"', path );
     
     let m = 0
         , t = 0
