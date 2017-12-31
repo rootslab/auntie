@@ -1,8 +1,7 @@
 tutorials
-->settlement
-->collectables
-->fantastic
-->collaboration
-->governments
-->telecommunications
-->
+settlement
+collectables
+fantastic
+collaboration
+governments
+telecommunications

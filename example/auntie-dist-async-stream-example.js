@@ -7,7 +7,7 @@
 const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , path = __dirname + '/some-english-words.txt'
+    , path = __dirname + '/some-english-words-seq.txt'
     , pattern = '\r\n->'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
@@ -48,7 +48,7 @@ rstream.on( 'end', function () {
 
 rstream.on( 'close', function () {
     log( '- !close stream' );
-    log( '\n- total data length: %d bytes', fdata.length );
+    log( '\n- total data length: %d bytes', tot );
     log( '- total matches: %d (lines)', result[ 0 ] );
     log( '\n- min length: %d bytes', result[ 1 ] );
     log( '- max length: %d bytes', result[ 2 ] );

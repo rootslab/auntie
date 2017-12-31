@@ -8,7 +8,7 @@ const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
     , stdout = process.stdout
-    , dpath = __dirname + '/long-english-words.txt'
+    , dpath = __dirname + '/some-english-words.txt'
     , pattern = '\r\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
@@ -20,7 +20,7 @@ log( '- Auntie example, loading english long words from file:\n "%s"', dpath );
 log( '\n- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
 // I voluntarily reduce the chunk buffer size to 10 bytes
-rstream._readableState.highWaterMark = 10;
+rstream._readableState.highWaterMark = 1;
 
 log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
@@ -50,7 +50,7 @@ rstream.on( 'close', function () {
     log();
     log( '- total data chunks: %d ', c );
     log( '- total data length: %d bytes', t );
-    log( '- current pattern (%d):', pattern.length, untie.pattern.slice( 0, 255 ) );
+    log( '- current pattern (%d):', pattern.length, untie.seq );
     log( '- total matches: %d', m );
     log();
 

@@ -26,7 +26,7 @@ exports.test  = function ( done, assertions ) {
     log( '- current highwatermark value for stream: %d byte(s)', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 2 byte
-    rstream._readableState.highWaterMark = 2;
+    rstream._readableState.highWaterMark = 3;
 
     log( '- new highwatermark value for stream: %d byte(s)', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
