@@ -42,7 +42,6 @@ exports.test  = function ( done, assertions ) {
             t += chunk.length;
             rstream.pause()
             rstream._readableState.highWaterMark = c + 1;
-            log( chunk.length )
             rstream.resume()
             // rstream._readableState.highWaterMark = c;
             // count returns me.cnt property, updated/incremented on every call
