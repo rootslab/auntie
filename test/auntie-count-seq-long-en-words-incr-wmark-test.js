@@ -50,7 +50,7 @@ exports.test  = function ( done, assertions ) {
             rstream._readableState.highWaterMark = rand( 1, c );
             stdout.clearLine();
             stdout.cursorTo( 0 );
-            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
+            //stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
             // count returns me.cnt property, updated/incremented on every call
             let cnt = untie.count( chunk )[ 0 ];
         } );
@@ -77,10 +77,9 @@ exports.test  = function ( done, assertions ) {
             // flush data
             untie.flush();
 
-            exit();
             // increment chunk size and run test until size is plen * 2
-            // if ( csize < untie.seq.length << 1 ) run( ++csize );
-            // else exit();
+            if ( csize < untie.seq.length << 1 ) run( ++csize );
+            else exit();
         } );
     };
     // start with 1 byte chunk
