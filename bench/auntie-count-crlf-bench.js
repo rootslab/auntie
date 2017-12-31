@@ -23,7 +23,8 @@ let data = fs.readFileSync( path )
     , arr = []
     ;
 for ( let i = 0; i < 512; ++i ) arr.push( data );
-fdata = Buffer.concat( arr ); 
+fdata = Buffer.concat( arr );
+for ( let i = 0; i < fdata.length; ++i ) fdata[ i ] = fdata[ i ];
 
 
 log( '- Auntie#count benchmark, load english long words from a file in SYNC way:\n "%s"\n', path );
