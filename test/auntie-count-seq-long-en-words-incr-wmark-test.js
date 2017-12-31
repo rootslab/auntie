@@ -33,16 +33,16 @@ exports.test  = function ( done, assertions ) {
         // voluntarily reduce the chunk buffer size to k byte(s)
         rstream._readableState.highWaterMark = csize;
 
-        log( '\n- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
+        log( '\n- starting value for stream highwatermark: %d bytes', rstream._readableState.highWaterMark );
         log( '- starting parse data stream..' );
         log( '- counting occurrences ..' );
 
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
-            rstream.pause()
+            rstream.pause();
             rstream._readableState.highWaterMark = c + 1;
-            rstream.resume()
+            rstream.resume();
             // rstream._readableState.highWaterMark = c;
             // count returns me.cnt property, updated/incremented on every call
             let cnt = untie.count( chunk )[ 0 ];
@@ -69,7 +69,8 @@ exports.test  = function ( done, assertions ) {
 
             // flush data
             untie.flush();
-
+            
+            exit();
             // increment chunk size and run test until size is plen * 2
             // if ( csize < untie.seq.length << 1 ) run( ++csize );
             // else exit();
