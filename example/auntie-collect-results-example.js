@@ -56,7 +56,7 @@ rstream.on( 'close', function () {
     log();
     log( '- total data chunks: %d ', c );
     log( '- total data length: %d bytes', t );
-    log( '- current pattern (%d):', pattern.length, untie.pattern.slice( 0, 255 ) );
+    log( '- current pattern (%d):', pattern.length, untie.seq );
     log( '- total matches: %d', m );
     log();
 
