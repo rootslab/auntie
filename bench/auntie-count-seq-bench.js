@@ -22,9 +22,12 @@ let data = fs.readFileSync( path )
     , cnt = 0
     , arr = []
     ;
-for ( let i = 0; i < 512; ++i ) arr.push( data );
-fdata = Buffer.concat( arr ); 
 
+fdata = Buffer.allocUnsafe( 512 * data.length ); 
+for ( let i = 0; i < 512; ++i ) data.copy( fdata, i * data.length );
+
+// for ( let i = 0; i < 512; ++i ) arr.push( data );
+// fdata = Buffer.concat( arr ); 
 
 log( '- Auntie#count benchmark, load english long words from a file in SYNC way:\n "%s"\n', path );
 log( '- sequence to parse is "%s" ->', untie.seq );
@@ -44,6 +47,7 @@ log( ' - total matches: %d', cnt );
 log( ' - total percentage of matching data: %d%', perc );
 log( ' - %d ops/sec', ( cnt / secs ).toFixed( 2 ) );
 log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
+log( ' - %d Gbits/sec', ( fdata.length / ( 128 * 1024 * 1024 * secs ) ).toFixed( 2 ) );
 
 log( '\n- flush data and reset internal state..' );
 untie.flush( true );
@@ -61,6 +65,7 @@ log( ' - total matches: %d', cnt );
 log( ' - total percentage of matching data: %d%', perc );
 log( ' - %d ops/sec', ( cnt / secs ).toFixed( 2 ) );
 log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
+log( ' - %d Gbits/sec', ( fdata.length / ( 128 * 1024 * 1024 * secs ) ).toFixed( 2 ) );
 
 log( '\n- flush data and reset internal state..' );
 untie.flush( true );
@@ -78,3 +83,4 @@ log( ' - total matches: %d', cnt.length );
 log( ' - total percentage of matching data: %d%', perc );
 log( ' - %d ops/sec', ( cnt.length / secs ).toFixed( 2 ) );
 log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
+log( ' - %d Gbits/sec', ( fdata.length / ( 128 * 1024 * 1024 * secs ) ).toFixed( 2 ) );
