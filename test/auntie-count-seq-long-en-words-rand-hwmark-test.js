@@ -1,7 +1,7 @@
 /*
  * Auntie#count test, it loads a file containing 8192
  * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is reduced to k byte(s).
+ * For "messing" things up, the chunk size is is randomly generated.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -47,7 +47,7 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = rand( 1, 256 );
+            rstream._readableState.highWaterMark = rand( 1, c << 1 );
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );

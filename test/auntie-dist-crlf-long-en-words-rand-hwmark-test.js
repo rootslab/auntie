@@ -1,7 +1,7 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
  * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is reduced to k byte(s).
+ * For "messing" things up, the chunk size is is randomly generated.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,12 +12,12 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/long-english-words-seq.txt'
-        , pattern = '-----'
+        , path = __dirname + '/data/long-english-words-crlf.txt'
+        , pattern = '\r\n'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
-        // create an async read stream
-        , rstream = fs.createReadStream( path )
+        // async read stream
+        , rstream = null
         //  sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )
         , buffers = results[ 0 ]
@@ -25,11 +25,18 @@ exports.test  = function ( done, assertions ) {
         , matches = results[ 2 ]
         // length of data loaded
         , llen = results[ 3 ]
+        //random numbers
+        , rand = ( min, max ) => {
+            min = + min || 0;
+            max = + max || 4000;
+            return min + Math.floor( Math.random() * ( max - min + 1 ) );
+        }
         ;
 
     log( '- Auntie#dist test, loading english long words from file in ASYNC way:\n "%s"', path );
 
     log( '- calculate max, min, .. for testing correctness..' );    
+    
     let i = 1
         , dlen = distances.length
         , blen = buffers.length
@@ -42,6 +49,7 @@ exports.test  = function ( done, assertions ) {
         if ( val < rcnt[ 1 ] ) rcnt[ 1 ] = val;
         else if ( val > rcnt[ 2 ] ) rcnt[ 2 ] = val;
     }
+    
     log( '- values to obtain are: ', rcnt );    
 
     var run = function ( csize ) {
@@ -62,7 +70,11 @@ exports.test  = function ( done, assertions ) {
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
-            // count returns me.cnt property, updated/incremented on every call
+            // change watermark to pseudo-random integer
+            rstream._readableState.highWaterMark = rand( 1, c << 1 );
+            stdout.clearLine();
+            stdout.cursorTo( 0 );
+            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
             reply = untie.dist( chunk );
         } );
 
@@ -96,7 +108,7 @@ exports.test  = function ( done, assertions ) {
             untie.flush();
 
             // increment chunk size and run test until size is plen * 2
-            if ( csize < untie.seq.length << 1 ) run( ++csize );
+            if ( csize < untie.seq.length << 2 ) run( ++csize );
             else exit();
         } );
     };
