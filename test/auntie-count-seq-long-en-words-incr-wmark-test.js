@@ -47,7 +47,7 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = rand( 1, 64 );
+            rstream._readableState.highWaterMark = rand( 1, 256 );
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
@@ -78,8 +78,8 @@ exports.test  = function ( done, assertions ) {
             // flush data
             untie.flush();
 
-            // increment chunk size and run test until size is plen * 2
-            if ( csize < untie.seq.length << 1 ) run( ++csize );
+            // increment chunk size and run test until size is plen * 16
+            if ( csize < untie.seq.length << 4 ) run( ++csize );
             else exit();
         } );
     };
