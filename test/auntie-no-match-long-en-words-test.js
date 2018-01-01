@@ -11,7 +11,7 @@ exports.test  = function ( done, assertions ) {
         , fs = require( 'fs' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/long-english-words-crlf.txt'
+        , path = __dirname + '/data/long-english-words-crlf.txt'
         // use a not existing pattern
         , pattern = '\r\n\r\n'
         , untie = Auntie( pattern )

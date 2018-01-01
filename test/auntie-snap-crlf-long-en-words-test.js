@@ -9,10 +9,10 @@ exports.test  = function ( done, assertions ) {
         , exit = typeof done === 'function' ? done : function () {}
         , assert = assertions || require( 'assert' )
         , fs = require( 'fs' )
-        , sync_load_and_collect = require( './sync-load-and-collect.js' )
+        , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/long-english-words-crlf.txt'
+        , path = __dirname + '/data/long-english-words-crlf.txt'
         , pattern = '\r\n'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )

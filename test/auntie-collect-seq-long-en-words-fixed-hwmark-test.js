@@ -9,16 +9,16 @@ exports.test  = function ( done, assertions ) {
         , exit = typeof done === 'function' ? done : function () {}
         , assert = assertions || require( 'assert' )
         , fs = require( 'fs' )
-        , sync_load_and_collect = require( './sync-load-and-collect.js' )
+        , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/long-english-words-crlf.txt'
-        , pattern = '\r\n'
+        , path = __dirname + '/data/long-english-words-seq.txt'
+        , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
-        // create an async read stream
-        , rstream = fs.createReadStream( path )
-        //  sync load file and collect results to test Auntie correctness
+        // async read stream
+        , rstream = null
+        // sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
         ;
 
@@ -38,7 +38,7 @@ exports.test  = function ( done, assertions ) {
 
         log( '\n- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
         log( '- starting parse data stream..' );
-     
+
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
@@ -73,7 +73,7 @@ exports.test  = function ( done, assertions ) {
 
             log( '\n- total matches: %d', m );
             log( '- total data chunks: %d ', c );
-            log( '- total data length: %d byte(s)', t );
+            log( '- total data length: %d bytes', t );
             log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
 
             // flush data
