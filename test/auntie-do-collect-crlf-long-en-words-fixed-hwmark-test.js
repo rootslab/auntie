@@ -49,7 +49,7 @@ exports.test  = function ( done, assertions ) {
         } );
 
         rstream.on( 'end', function () {
-            log( '- !end stream' );
+            log( '\n- !end stream' );
         } );
 
         rstream.on( 'close', function () {
