@@ -138,7 +138,7 @@ Auntie.cnt : Array
 > Arguments between [ ] are optional.
 
 #### Auntie.count
-> ##### the fastest/lightest way to count many times the sequence appears in the current data.
+> ##### the fastest/lightest way to count how many times the sequence appears in the current data.
 ```javascript
 /*
  * it returns an Array with the current number of occurrences.
