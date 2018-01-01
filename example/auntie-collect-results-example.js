@@ -18,10 +18,10 @@ log();
 log( '- Auntie example, loading english long words from file:\n "%s"', dpath );
 log( '\n- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
-// I voluntarily reduce the chunk buffer size to 512 bytes
-rstream._readableState.highWaterMark = 512;
+// I voluntarily reduce the chunk buffer size to k bytes
+rstream._readableState.highWaterMark = 1;
 
-log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+log( '- new stream highwatermark value: %d byte(s)', rstream._readableState.highWaterMark );
 
 let t = 0
     , c = 0
@@ -31,7 +31,7 @@ let t = 0
 log( '\n - read stream..' );
 
 rstream.on( 'data', function ( chunk ) {
-    log( '\n -> data chunk %d received\n', ++c );
+    log( ' -> data chunk (%d)', ++c );
     t += chunk.length;
     // concat current results to collected array
     let curr = untie.do( chunk, true )
@@ -54,6 +54,7 @@ rstream.on( 'end', function () {
 rstream.on( 'close', function () {
     log( ' !close' );
     log();
+    log( '- stream highwatermark value (chunk size): %d byte(s)', rstream._readableState.highWaterMark );
     log( '- total data chunks: %d ', c );
     log( '- total data length: %d bytes', t );
     log( '- current pattern (%d):', pattern.length, untie.seq );

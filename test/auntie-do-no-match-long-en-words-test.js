@@ -23,7 +23,7 @@ exports.test  = function ( done, assertions ) {
     log( '- current highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     
     // I voluntarily reduce the chunk buffer size to 1024 bytes
-    rstream._readableState.highWaterMark = 1024;
+    rstream._readableState.highWaterMark = 1;
 
     log( '- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
     log( '- starting parse data stream..' );
@@ -55,7 +55,6 @@ exports.test  = function ( done, assertions ) {
 
     rstream.on( 'close', function () {
         log( '- !close stream\n' );
-        
         // read internal snip property
         let snip = untie.snip
             // get remaining data (always snip) with flush 

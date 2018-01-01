@@ -60,7 +60,9 @@ exports.test  = function ( done, assertions ) {
                 , m = 0
                 ;
             for ( ; m < collected.length; el = collected[ ++m ] ) {
-                emsg = 'error, different results with match (n°:' + m + ') (expected: ' + results[ m ] + ' is: ' + el + ')';
+                emsg = '\n different results with (' + ( m + 1 ) + '°) match:';
+                emsg += '\n expected: <' + results[ m ] + '> (' + results[ m ].length + ')';
+                emsg += '\n  is: <' + el + '> (' + el.length +')\n';
                 stdout.clearLine();
                 stdout.cursorTo( 0 );
                 stdout.write('  -> check collected results (' + ( m + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
@@ -85,7 +87,7 @@ exports.test  = function ( done, assertions ) {
         } );
     };
     // start with 1 byte chunk
-    run( 1 );
+    run( 2 );
 
 };
 
