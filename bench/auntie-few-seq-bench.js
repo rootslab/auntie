@@ -73,7 +73,7 @@ log( ' - %d Gbits/sec', ( data.length / ( 128 * 1024 * 1024 * secs ) ).toFixed( 
 log( '\n- flush data and reset internal state..' );
 untie.flush( true );
 
-log( '\n-> parsing occurrences using #do (expected 0 matches)..' );
+log( '\n-> parsing occurrences using #do..' );
 
 stime = now();
 cnt = untie.do( data, true );
