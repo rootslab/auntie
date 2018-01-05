@@ -74,8 +74,14 @@ const Auntie  = require( 'auntie' );
 
 > __output example and running time__:
 
-![Tests Results Example](/test/data/example-output.png)
+```bash
+- current path is 'test'.
+- time elapsed: 167.277 secs.
 
+  22 test files were loaded.
+  22 test files were launched.
+  1272375 assertions succeeded.
+```
 ### Run Benchmarks
 
 ```bash
