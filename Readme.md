@@ -72,6 +72,8 @@ const Auntie  = require( 'auntie' );
  $ node test/file-name.js
 ```
 
+> ![Tests Results Example](/test/data/example-output.png)
+
 ### Run Benchmarks
 
 ```bash
