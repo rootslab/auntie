@@ -1,7 +1,5 @@
 /*
- * Auntie test for collecting results, it loads a file containing 8192
- * long english words, separated by CRLF '\r\n' pattern.
- * For "messing" things up, the chunk size is randomly generated.
+ * Auntie test, buffer plenty of patterns, random highwatermark for stream
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,13 +10,13 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/long-english-words-crlf.txt'
-        , pattern = '\r\n'
+        , path = __dirname + '/data/3k-fat-seq.txt'
+        , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
         // async read stream
         , rstream = null
-        //  sync load file and collect results to test Auntie correctness
+        // sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
         //random numbers
         , rand = ( min, max ) => {
@@ -44,7 +42,7 @@ exports.test  = function ( done, assertions ) {
 
         log( '\n- new highwatermark value for stream: %d bytes', rstream._readableState.highWaterMark );
         log( '- starting parse data stream..' );
-     
+
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
@@ -83,7 +81,7 @@ exports.test  = function ( done, assertions ) {
 
             log( '\n- total matches: %d', m );
             log( '- total data chunks: %d ', c );
-            log( '- total data length: %d byte(s)', t );
+            log( '- total data length: %d bytes', t );
             log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
 
             // flush data
