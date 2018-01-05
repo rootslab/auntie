@@ -87,7 +87,7 @@ exports.test  = function ( done, assertions ) {
         } );
     };
     // start with 1 byte chunk
-    run( 2 );
+    run( 1 );
 
 };
 
