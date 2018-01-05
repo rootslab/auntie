@@ -72,7 +72,9 @@ const Auntie  = require( 'auntie' );
  $ node test/file-name.js
 ```
 
-> ![Tests Results Example](/test/data/example-output.png)
+> __tests output example and running time__:
+
+![Tests Results Example](/test/data/example-output.png)
 
 ### Run Benchmarks
 
