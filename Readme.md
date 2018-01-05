@@ -74,7 +74,7 @@ const Auntie  = require( 'auntie' );
 
 > __output example and running time__:
 
-![Tests Results Example](/test/data/example-output-black.png)
+![Tests Results Example](/test/data/example-output.png)
 
 ### Run Benchmarks
 
