@@ -8,8 +8,8 @@ const log = console.log
     , now = Date.now
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , path = __dirname + '/long-english-words-seq.txt'
-    , pattern = '-----'
+    , path = __dirname + '/long-english-words.txt'
+    , pattern = '\r\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
     ;
@@ -25,12 +25,12 @@ let data = fs.readFileSync( path )
 
 fdata = Buffer.allocUnsafe( 512 * data.length ); 
 for ( let i = 0; i < 512; ++i ) data.copy( fdata, i * data.length );
-
+    
 // for ( let i = 0; i < 512; ++i ) arr.push( data );
 // fdata = Buffer.concat( arr ); 
 
 log( '- Auntie#count benchmark, load english long words from a file in SYNC way:\n "%s"\n', path );
-log( '- sequence to parse is "%s" ->', untie.seq );
+log( '- sequence to parse is "\\r\\n"', untie.seq );
 log( '- sequence length: %d bytes', untie.seq.length );
 log( '\n-> total data length: %d MBytes', fdata.length >>> 20 );
 

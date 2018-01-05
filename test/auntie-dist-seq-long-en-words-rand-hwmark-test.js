@@ -107,8 +107,8 @@ exports.test  = function ( done, assertions ) {
             // flush data
             untie.flush();
 
-            // increment chunk size and run test until size is plen * 2
-            if ( csize < untie.seq.length << 2 ) run( ++csize );
+            // increment chunk size and run test until size is plen * 16
+            if ( csize < untie.seq.length << 4 ) run( ++csize );
             else exit();
         } );
     };

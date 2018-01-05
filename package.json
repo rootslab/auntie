@@ -35,7 +35,6 @@
   , "scripts": {
     "test": "node test/run.js"
     , "bench": "bash bench/run.sh"
-    , "short-test": "bash bench/run_short_tests.sh"
   }
   , "license": "MIT"
   , "readmeFilename": "Readme.md"
