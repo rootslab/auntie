@@ -96,11 +96,11 @@ $ npm run bench
 > Arguments between [ ] are optional.
 
 ```javascript
-Auntie( [ Buffer sequence | String sequence | Number sequence ] )
+Auntie( [ Buffer | String | Number sequence ] )
 ```
 > or
 ```javascript
-new Auntie( [ Buffer sequence | String sequence | Number sequence ] )
+new Auntie( [ Buffer | String | Number sequence ] )
 ```
 > __NOTE__: default is the `CRLF sequence \r\n`.
 
@@ -210,7 +210,7 @@ Auntie.cnt : Array
 > ##### set a new sequence for splitting data.
 ```javascript
 // default sequence is '\r\n' or CRLF sequence.
- 'set' : function ( [ Buffer sequence | String sequence | Number sequence ] ) : Auntie
+ 'set' : function ( [ Buffer | String | Number sequence ] ) : Auntie
 ```
 
 ------------------------------------------------------------------------------
