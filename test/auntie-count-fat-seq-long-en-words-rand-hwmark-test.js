@@ -46,11 +46,13 @@ exports.test  = function ( done, assertions ) {
             t += chunk.length;
             // change watermark to pseudo-random integer
             rstream._readableState.highWaterMark = rand( 1, c << 1 );
+            // count returns me.cnt property, updated/incremented on every call
+            let cnt = untie.count( chunk )[ 0 ];
+            if ( process.env.NODE_ENV === 'TRAVIS' ) return;
+            else log( process.env )
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes,' );
-            // count returns me.cnt property, updated/incremented on every call
-            let cnt = untie.count( chunk )[ 0 ];
         } );
 
         rstream.on( 'end', function () {
