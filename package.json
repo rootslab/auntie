@@ -16,7 +16,10 @@
     , "pattern matching"
     , "streaming parser"
     , "boyer-moore"
-  ]
+    , "csv"
+    , "tsv"
+    , "csv parser"
+]
   , "author": {
     "name": "Guglielmo Ferri"
     , "email": "44gatti@gmail.com"
