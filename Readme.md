@@ -16,10 +16,11 @@
 
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
-> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting/counting__ a stream of data by a __chosen sequence/separator__.
+> __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting/counting__
+> a stream of data by a __chosen sequence/separator__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
-> optimized for sequence lengths <= 255 bytes.
+> optimized for __separator__ lengths between 2 and 255 bytes.
 
 ### Table of Contents
 
