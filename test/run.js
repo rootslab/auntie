@@ -2,3 +2,5 @@
 ( function () {
    require( 'dado' )().do( 'test' );
 } )();
+
+process.env.TRAVIS = 1

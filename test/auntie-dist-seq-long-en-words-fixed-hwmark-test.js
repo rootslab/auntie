@@ -40,7 +40,6 @@ exports.test  = function ( done, assertions ) {
         , val = distances[ 0 ]
         ;
     for ( ; i < dlen; val = distances[ ++i ] ) {
-        // TODO
         if ( val < rcnt[ 1 ] ) rcnt[ 1 ] = val;
         else if ( val > rcnt[ 2 ] ) rcnt[ 2 ] = val;
     }

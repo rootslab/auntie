@@ -62,7 +62,7 @@ exports.test  = function ( done, assertions ) {
                 // check if results (buffers) are equal
                 assert.ok( el.compare( results[ m ] ) === 0, emsg );
                 // avoid output on travis ci
-                if ( process.env.TRAVIS ) return;
+                if ( process.env.TRAVIS ) continue;
                 stdout.clearLine();
                 stdout.cursorTo( 0 );
                 stdout.write('  -> check collected results (' + ( m + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
