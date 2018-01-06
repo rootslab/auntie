@@ -18,6 +18,7 @@
     , "boyer-moore"
     , "csv"
     , "tsv"
+    , "csv stream"
     , "csv parser"
 ]
   , "author": {
