@@ -40,7 +40,8 @@ let t = 0
     , qlines = []
     , qpos = []
     , qtlen = 0
-    , qnum = '"'.charCodeAt( 0 )
+    , quote= '"'
+    , qnum = quote.charCodeAt( 0 )
     , fn = ( data, arr ) => {
         let i = 0
             , dlen = data.length
@@ -91,7 +92,7 @@ rstream.on( 'data', function ( chunk ) {
                 if ( ! ( qtlen & 1 ) ) {
                     ++m;
                     el = bconcat( qlines );
-                    log( ' !(%d) quoted line -> (%d)', m, el.length, el );
+                    log( ' !(%d) quoted line -> (%d)', m, el.length, String( el ) );
                     log( '      quote pos:', qpos );
                     // reset quoted lines
                     qtlen = 0;
@@ -102,13 +103,14 @@ rstream.on( 'data', function ( chunk ) {
                 continue;
             }
             ++m;
-            log(' !(%d) line -> (%d)', m, el.length, el );
+            log(' !(%d) line -> (%d)', m, el.length, el, String( el ) );
+
         }
     }
 } );
 
 rstream.on( 'end', function () {
-    log( '\n -> last snip: (%d)', untie.snip.length, untie.snip );
+    log( '\n -> last snip: (%d)', untie.snip.length, untie.snip, String( untie.snip ) );
     log( '\n !end stream' );
 } );
 
@@ -118,7 +120,8 @@ rstream.on( 'close', function () {
     log( '- stream highwatermark value (chunk size): %d byte(s)', rstream._readableState.highWaterMark );
     log( '- total data chunks: %d ', c );
     log( '- total data length: %d bytes', t );
-    log( '- current separator (%d):', pattern.length, untie.seq );
+    log( '- current record separator (%d):', pattern.length, untie.seq );
+    log( '- current quote char (%s):', quote, Buffer.from( quote ) );
     log( '- CSV lines matched: %d', m );
     log();
 } );
