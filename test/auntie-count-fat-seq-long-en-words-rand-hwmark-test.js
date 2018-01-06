@@ -48,8 +48,8 @@ exports.test  = function ( done, assertions ) {
             rstream._readableState.highWaterMark = rand( 1, c << 1 );
             // count returns me.cnt property, updated/incremented on every call
             let cnt = untie.count( chunk )[ 0 ];
-            if ( process.env.NODE_ENV === 'TRAVIS' ) return;
-            else log( process.env )
+            // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes,' );
