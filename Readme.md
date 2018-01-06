@@ -35,8 +35,9 @@
     - __[flush](#auntieflush)__
     - __[set](#auntieset)__    
 - __[Events](#events)__
-- __[Examples](#examples)__
-  - __[count lines](#count-lines-crlf)__ 
+- __[Examples](#examples)__  
+  - __[split lines from a CSV file](#split-lines-from-a-csv-file-crlf)__
+  - __[count lines from a file](#count-lines-from-a-file-crlf)__ 
   - __[snap event and collect](#snap-event-and-collect-crlf)__
 - __[MIT License](#mit-license)__
 
@@ -236,7 +237,11 @@ Auntie.cnt : Array
 
 ### Examples
 
-#### count lines (CRLF):
+#### split lines from a CSV file (CRLF):
+
+> - __[split lines](example/auntie-csv-split-lines-example.js)__
+
+#### count lines from a file (CRLF):
  
  > - __[count sync](example/auntie-count-sync-load-example.js)__
  > - __[dist sync](example/auntie-dist-sync-load-example.js)__
