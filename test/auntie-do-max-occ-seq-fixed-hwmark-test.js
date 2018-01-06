@@ -1,7 +1,5 @@
 /*
- * Auntie test for collecting results, it loads a file containing 8192
- * long english words, separated by CRLF '\r\n' pattern.
- * For "messing" things up, the chunk size is reduced to 10 bytes.
+ * Auntie test, buffer full of patterns, result should be 0
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,7 +10,7 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/long-english-words-seq.txt'
+        , path = __dirname + '/data/40k-seq.txt'
         , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
@@ -23,7 +21,7 @@ exports.test  = function ( done, assertions ) {
         ;
 
     log( '- Auntie collecting test, loading english long words from file:\n "%s"', path );
-    
+ 
     var run = function ( csize ) {
     
         let t = 0
@@ -61,11 +59,13 @@ exports.test  = function ( done, assertions ) {
                 ;
             for ( ; m < collected.length; el = collected[ ++m ] ) {
                 emsg = 'error, different results with match (n°:' + m + ') (expected: ' + results[ m ] + ' is: ' + el + ')';
+                // check if results (buffers) are equal
+                assert.ok( el.compare( results[ m ] ) === 0, emsg );
+                // avoid output on travis ci
+                if ( process.env.TRAVIS ) return;
                 stdout.clearLine();
                 stdout.cursorTo( 0 );
                 stdout.write('  -> check collected results (' + ( m + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
-                // check if results (buffers) are equal
-                assert.ok( el.compare( results[ m ] ) === 0, emsg );
             }
 
             log( '\n- total matches should be: %d', results.length );
@@ -79,14 +79,14 @@ exports.test  = function ( done, assertions ) {
             // flush data
             untie.flush();
 
-            // increment chunk size and run test until size is plen * 4
-            if ( csize < untie.seq.length << 2 ) run( ++csize );
+            // increment chunk size and run test until size is plen * 2
+            if ( csize < untie.seq.length << 1 ) run( ++csize );
             else exit();
         } );
     };
     // start with 1 byte chunk
     run( 1 );
-
+/**/
 };
 
 // single test execution with node

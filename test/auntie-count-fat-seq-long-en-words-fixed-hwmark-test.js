@@ -1,7 +1,5 @@
 /*
- * Auntie#count test, it loads a file containing 8192
- * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is is randomly generated.
+ * Auntie#count test, with buffer plenty of sequences, fixed highwatermark for stream
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,7 +10,7 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/long-english-words-seq.txt'
+        , path = __dirname + '/data/3k-fat-seq.txt'
         , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
@@ -47,12 +45,14 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = rand( 1, c << 1 );
+            rstream._readableState.highWaterMark = csize;
+            // count returns me.cnt property, updated/incremented on every call
+            let cnt = untie.count( chunk )[ 0 ];
+            // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
-            // count returns me.cnt property, updated/incremented on every call
-            let cnt = untie.count( chunk )[ 0 ];
         } );
 
         rstream.on( 'end', function () {

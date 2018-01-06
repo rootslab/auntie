@@ -1,7 +1,7 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
  * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is randomly generated.
+ * For "messing" things up, the chunk size is reduced to k byte(s).
  */
 
 exports.test  = function ( done, assertions ) {
@@ -26,11 +26,6 @@ exports.test  = function ( done, assertions ) {
         // length of data loaded
         , llen = results[ 3 ]
         //random numbers
-        , rand = ( min, max ) => {
-            min = + min || 0;
-            max = + max || 4000;
-            return min + Math.floor( Math.random() * ( max - min + 1 ) );
-        }
         ;
 
     log( '- Auntie#dist test, loading english long words from file in ASYNC way:\n "%s"', path );
@@ -71,11 +66,13 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = rand( 1, c << 1 );
+            rstream._readableState.highWaterMark = c;
+            // avoid output on travis ci
+            reply = untie.dist( chunk );
+            if ( process.env.TRAVIS ) return;
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
-            reply = untie.dist( chunk );
         } );
 
         rstream.on( 'end', function () {
@@ -107,8 +104,8 @@ exports.test  = function ( done, assertions ) {
             // flush data
             untie.flush();
 
-            // increment chunk size and run test until size is plen * 16
-            if ( csize < untie.seq.length << 4 ) run( ++csize );
+            // increment chunk size and run test until size is plen * 2
+            if ( csize < untie.seq.length << 2 ) run( ++csize );
             else exit();
         } );
     };

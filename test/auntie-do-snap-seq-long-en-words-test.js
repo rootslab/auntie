@@ -31,21 +31,13 @@ exports.test  = function ( done, assertions ) {
     untie.on( 'snap', function ( data ) {
         let emsg = 'error, different results with match (n°:' + ( m + 1 ) + ') (expected: "' + results[ m ] + '"" is: "' + data + '")'
             ;
-        
-        /**/
+        assert.ok( data.compare( results[ m++ ] ) === 0, emsg );
+        // avoid output on travis ci
+        if ( process.env.TRAVIS ) return;
         stdout.clearLine();
         stdout.cursorTo( 0 );
         stdout.write( '  -> current data chunk (' + c + ')' );
         stdout.write(' !snap (' + ( m + 1 ) +') (' + data.length + ', ' + data + ')' );
-        /** /
-        // flat log
-        log( '  -> current data chunk (' + c + ')' );
-        log(' !snap (%d) (%d)', m + 1, data.length, data, String( data ) );
-        /**/
-
-        // check if results (buffers) are equal
-        // log( results.length, m )
-        assert.ok( data.compare( results[ m++ ] ) === 0, emsg );
     } );
 
     let run = function ( csize ) {

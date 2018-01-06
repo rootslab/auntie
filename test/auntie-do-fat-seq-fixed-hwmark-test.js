@@ -1,5 +1,5 @@
 /*
- * Auntie test, buffer plenty of patterns, random highwatermark for stream
+ * Auntie test, buffer plenty of patterns, fixed highwatermark for stream
  */
 
 exports.test  = function ( done, assertions ) {
@@ -18,12 +18,6 @@ exports.test  = function ( done, assertions ) {
         , rstream = null
         // sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
-        //random numbers
-        , rand = ( min, max ) => {
-            min = + min || 0;
-            max = + max || 4000;
-            return min + Math.floor( Math.random() * ( max - min + 1 ) );
-        }
         ;
 
     log( '- Auntie collecting test, loading english long words from file:\n "%s"', path );
@@ -46,14 +40,16 @@ exports.test  = function ( done, assertions ) {
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
-            rstream._readableState.highWaterMark = rand( 1, c << 1 );
-            stdout.clearLine();
-            stdout.cursorTo( 0 );
-            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
+            rstream._readableState.highWaterMark = csize;
             // concat current results to collected array
             let curr = untie.do( chunk, true );
             // concat, test results later, on 'close' event
             if ( curr.length ) collected = collected.concat( curr );
+            // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
+            stdout.clearLine();
+            stdout.cursorTo( 0 );
+            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
         } );
 
         rstream.on( 'end', function () {
@@ -69,7 +65,9 @@ exports.test  = function ( done, assertions ) {
                 ;
             for ( ; m < collected.length; el = collected[ ++m ] ) {
                 emsg = 'error, different results with match (n°:' + m + ') (expected: ' + results[ m ] + ' is: ' + el + ')';
-                stdout.clearLine();
+                // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
+            stdout.clearLine();
                 stdout.cursorTo( 0 );
                 stdout.write('  -> check collected results (' + ( m + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
                 // check if results (buffers) are equal

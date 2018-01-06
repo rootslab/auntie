@@ -1,7 +1,7 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
  * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is is randomly generated.
+ * For "messing" things up, the chunk size is randomly generated.
  */
 
 exports.test  = function ( done, assertions ) {
@@ -12,8 +12,8 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/long-english-words-crlf.txt'
-        , pattern = '\r\n'
+        , path = __dirname + '/data/long-english-words-seq.txt'
+        , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
         // async read stream
@@ -72,10 +72,12 @@ exports.test  = function ( done, assertions ) {
             t += chunk.length;
             // change watermark to pseudo-random integer
             rstream._readableState.highWaterMark = rand( 1, c << 1 );
+            reply = untie.dist( chunk );
+            // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
             stdout.clearLine();
             stdout.cursorTo( 0 );
             stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
-            reply = untie.dist( chunk );
         } );
 
         rstream.on( 'end', function () {

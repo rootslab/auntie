@@ -1,5 +1,5 @@
 /*
- * Auntie test, buffer plenty of patterns, fixed highwatermark for stream
+ * Auntie test, buffer full of patterns, result should be 0
  */
 
 exports.test  = function ( done, assertions ) {
@@ -10,7 +10,7 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/3k-fat-seq.txt'
+        , path = __dirname + '/data/40k-seq.txt'
         , pattern = '-----'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
@@ -18,6 +18,12 @@ exports.test  = function ( done, assertions ) {
         , rstream = null
         // sync load file and collect results to test Auntie correctness
         , results = sync_load_and_collect( path, pattern, true )[ 0 ]
+        //random numbers
+        , rand = ( min, max ) => {
+            min = + min || 0;
+            max = + max || 4000;
+            return min + Math.floor( Math.random() * ( max - min + 1 ) );
+        }
         ;
 
     log( '- Auntie collecting test, loading english long words from file:\n "%s"', path );
@@ -40,14 +46,16 @@ exports.test  = function ( done, assertions ) {
         rstream.on( 'data', function ( chunk ) {
             ++c;
             t += chunk.length;
-            rstream._readableState.highWaterMark = csize;
-            stdout.clearLine();
-            stdout.cursorTo( 0 );
-            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
+            rstream._readableState.highWaterMark = rand( 1, c << 1 );
             // concat current results to collected array
             let curr = untie.do( chunk, true );
             // concat, test results later, on 'close' event
             if ( curr.length ) collected = collected.concat( curr );
+            // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
+            stdout.clearLine();
+            stdout.cursorTo( 0 );
+            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
         } );
 
         rstream.on( 'end', function () {
@@ -63,7 +71,9 @@ exports.test  = function ( done, assertions ) {
                 ;
             for ( ; m < collected.length; el = collected[ ++m ] ) {
                 emsg = 'error, different results with match (n°:' + m + ') (expected: ' + results[ m ] + ' is: ' + el + ')';
-                stdout.clearLine();
+                // avoid output on travis ci
+            if ( process.env.TRAVIS ) return;
+            stdout.clearLine();
                 stdout.cursorTo( 0 );
                 stdout.write('  -> check collected results (' + ( m + 1 ) + ') , current is: (' + el.length + ', ' + el + ')' );
                 // check if results (buffers) are equal
