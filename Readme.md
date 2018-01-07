@@ -269,8 +269,8 @@ Auntie.cnt : Array
  
 #### snap event and collect (CRLF):
 
- > - __[do snap: streaming data](example/auntie-snap-event-example.js)__
- > - __[do collect: streaming data](example/auntie-collect-results-example.js)__
+ > - __[do snap: streaming data](example/auntie-do-snap-event-example.js)__
+ > - __[do collect: streaming data](example/auntie-do-collect-results-example.js)__
 
 > See __[ All examples](example/)__.
 
