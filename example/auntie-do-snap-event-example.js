@@ -8,7 +8,7 @@ const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
     , stdout = process.stdout
-    , dpath = __dirname + '/data/some-english-words.txt'
+    , dpath = __dirname + '/data/some-english-words-crlf.txt'
     , pattern = '\r\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
@@ -36,7 +36,7 @@ untie.on( 'snap', function( data ) {
 log( '\n - read stream..' );
 
 rstream.on( 'data', function ( chunk ) {
-    log( '\n -> data chunk: %d', ++c );
+    log( ' -> data chunk: %d', ++c );
     t += chunk.length;
     untie.do( chunk, false );
 } );

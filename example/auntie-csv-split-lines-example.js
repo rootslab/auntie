@@ -10,7 +10,7 @@ const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
     , bconcat = Buffer.concat
-    , dpath = __dirname + '/data/little.csv'
+    , dpath = __dirname + '/data/little-crlf.csv'
     , pattern = '\r\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
