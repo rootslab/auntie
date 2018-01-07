@@ -219,18 +219,18 @@ Auntie.cnt : Array
 > ##### set a new sequence for splitting data.
 ```javascript
 // default sequence is '\r\n' or CRLF sequence.
- 'set' : function ( [ Buffer | String | Number sequence ] ) : Auntie
+'set' : function ( [ Buffer | String | Number sequence ] ) : Auntie
 ```
 
 > #### Auntie.comb
-> ##### search a char or a sequence into the current data.
+> ##### search for a char or a sequence into the current data.
 ```javascript
 /*
  * parse current data for a generic sequence. It returns an Array of indexes.
  * NOTE: it doesn't affect the current streaming parser and it doesn't save
  * any data. It simply parses a chunk of data for the specified sequence.
  */
- 'comb' : function ( Buffer | String | Number sequence, Buffer data ) : Array
+'comb' : function ( Buffer | String | Number sequence, Buffer data ) : Array
 ```
 
 ------------------------------------------------------------------------------
@@ -269,8 +269,8 @@ Auntie.cnt : Array
  
 #### snap event and collect (CRLF):
 
- > - __[do snap: streaming data](example/auntie-snap-event-example.js)__
- > - __[do collect: streaming data](example/auntie-collect-results-example.js)__
+ > - __[do snap: streaming data](example/auntie-do-snap-event-example.js)__
+ > - __[do collect: streaming data](example/auntie-do-collect-results-example.js)__
 
 > See __[ All examples](example/)__.
 

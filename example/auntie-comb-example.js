@@ -9,6 +9,8 @@ const log = console.log
     , pattern = '\r\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
+    // a custom seq to search inside lines
+    , seq = Buffer.from( 'le' )
     , rstream = fs.createReadStream( dpath )
     ;
 
@@ -29,8 +31,7 @@ let m = 0
 untie.on( 'snap', function( data ) {
     log(' !snap (%d) -> (%d) %s', ++m, data.length, data );
     // search a sequence inside the line
-    let seq = Buffer.from( 'le' )
-        , matches = untie.comb( seq, data )
+    let matches = untie.comb( seq, data )
         ;
     if ( matches.length ) log( '  -> matched <%s> (%s) on:', seq, seq.length, matches );
 } );
