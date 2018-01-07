@@ -35,6 +35,7 @@
     - __[do](#auntiedo)__
     - __[flush](#auntieflush)__
     - __[set](#auntieset)__    
+    - __[comb](#auntiecomb)__    
 - __[Events](#events)__
 - __[Examples](#examples)__  
   - __[split lines from a CSV file](#split-lines-from-a-csv-file-crlf)__
@@ -120,6 +121,11 @@ Auntie.seq : Buffer
 Auntie.bop : Bop
 ```
 
+##### a Boyer-Moore parser, to search for generic (sub)sequences
+```javascript
+Auntie.gbop : Bop
+```
+
 ##### the remaining data, without any match found.
 ```javascript
 Auntie.snip : Buffer
@@ -143,9 +149,10 @@ Auntie.cnt : Array
 |:--------------------------|:---------------------------------------------------------------------------------|
 | __[count](#auntiecount)__ | `count (only) how many times the sequence appears in the current data.`          |
 | __[dist](#auntiedist)__   | `count occurrences, min and max distance between sequences and remaining bytes.` |
-| __[do](#auntiedo)__       | `split a stream of data by the current sequence.`                                |
+| __[do](#auntiedo)__       | `split data or a stream of data by the current sequence.`                        |
 | __[flush](#auntieflush)__ | `flush the remaining data, resetting internal state/counters.`                   |
 | __[set](#auntieset)__     | `set a new sequence for splitting data.`                                         |
+| __[comb](#auntiecomb)__   | `search a char or a sequence into the current data.`                             |
 
 > Arguments between [ ] are optional.
 
@@ -182,7 +189,7 @@ Auntie.cnt : Array
 ```
 
 #### Auntie.do
-> ##### split a stream of data by the current sequence
+> ##### split data or a stream of data by the current sequence
 ```javascript
 /*
  * if collect is true, it returns an Array of results, otherwise it 
@@ -213,6 +220,17 @@ Auntie.cnt : Array
 ```javascript
 // default sequence is '\r\n' or CRLF sequence.
  'set' : function ( [ Buffer | String | Number sequence ] ) : Auntie
+```
+
+> #### Auntie.comb
+> ##### search a char or a sequence into the current data.
+```javascript
+/*
+ * parse current data for a generic sequence. It returns an Array of indexes.
+ * NOTE: it doesn't affect the current streaming parser and it doesn't save
+ * any data. It simply parses a chunk of data for the specified sequence.
+ */
+ 'comb' : function ( Buffer | String | Number sequence, Buffer data ) : Array
 ```
 
 ------------------------------------------------------------------------------
