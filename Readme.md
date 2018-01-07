@@ -210,9 +210,9 @@ Auntie.cnt : Array
 /*
  * if collect is true it returns a Buffer, otherwise it emits 
  * a 'snip' event with data. Obviously the snip doesn't contain
- * the sequence (no match).
+ * the sequence (no match). It is equal to get me.snip property.
  */
-'flush' : function ( [ Boolean collect ] ) : [ Buffer snip ]
+'flush' : function ( [ Boolean collect ] ) : [ Buffer ]
 ```
 
 > #### Auntie.set
