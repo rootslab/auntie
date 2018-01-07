@@ -38,7 +38,7 @@
     - __[comb](#auntiecomb)__    
 - __[Events](#events)__
 - __[Examples](#examples)__  
-  - __[split lines streaming from a CSV file](#split-lines-streaming-from-a-csv-file-crlf)__
+  - __[split lines (streaming) from a CSV file](#split-lines-from-a-csv-file-crlf)__
   - __[count lines from a file](#count-lines-from-a-file-crlf)__ 
   - __[snap event and collect](#snap-event-and-collect-crlf)__
 - __[MIT License](#mit-license)__
@@ -256,7 +256,7 @@ Auntie.cnt : Array
 
 ### Examples
 
-#### split lines streaming from a CSV file (CRLF):
+#### split lines from a CSV file (CRLF):
 
 > - __[do, comb: streaming data](example/auntie-csv-split-lines-example.js)__
 
