@@ -258,7 +258,7 @@ Auntie.cnt : Array
 
 #### split lines streaming from a CSV file (CRLF):
 
-> - __[split lines](example/auntie-csv-split-lines-example.js)__
+> - __[do split lines](example/auntie-csv-split-lines-example.js)__
 
 #### count lines from a file (CRLF):
  
