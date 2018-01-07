@@ -52,8 +52,10 @@ log( ' - %d Gbits/sec', ( fdata.length / ( 128 * 1024 * 1024 * secs ) ).toFixed(
 log( '\n- flush data and reset internal state..' );
 untie.flush( true );
 
+// TODO skipping for now, 1 char sequence is not efficently handled by #dist
 log( '\n-> counting occurrences using #dist..' );
-
+log( ' - TODO: skipping #dist for now, 1 char sequence is not efficently handled!' );
+/** /
 stime = now();
 cnt = untie.dist( fdata )[ 0 ];
 etime = now();
@@ -71,6 +73,7 @@ log( '\n- flush data and reset internal state..' );
 untie.flush( true );
 
 untie.on( 'snap', () => log( arguments ))
+/**/
 
 log( '\n-> parsing occurrences using #do..' );
 
