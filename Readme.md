@@ -79,7 +79,7 @@ const Auntie  = require( 'auntie' );
 
 ```bash
 - current path is 'test'.
-- time elapsed: 167.277 secs.
+- time elapsed: 149.169 secs.
 
   22 test files were loaded.
   22 test files were launched.
@@ -201,7 +201,7 @@ Auntie.cnt : Array
  * sequence, for the next #do call on fresh data (to check for 
  * occurrences between chunks).
  */
-'do' : function ( Buffer data [, Boolean collect ] ) : [ Array results ]
+'do' : function ( Buffer data [, Boolean collect ] ) : [ Array ]
 ```
 
 #### Auntie.flush
