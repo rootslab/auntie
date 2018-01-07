@@ -38,7 +38,7 @@
     - __[comb](#auntiecomb)__    
 - __[Events](#events)__
 - __[Examples](#examples)__  
-  - __[split lines from a CSV file](#split-lines-from-a-csv-file-crlf)__
+  - __[split lines streaming from a CSV file](#split-lines-streaming-from-a-csv-file-crlf)__
   - __[count lines from a file](#count-lines-from-a-file-crlf)__ 
   - __[snap event and collect](#snap-event-and-collect-crlf)__
 - __[MIT License](#mit-license)__
@@ -256,23 +256,23 @@ Auntie.cnt : Array
 
 ### Examples
 
-#### split lines from a CSV file (CRLF):
+#### split lines streaming from a CSV file (CRLF):
 
 > - __[split lines](example/auntie-csv-split-lines-example.js)__
 
 #### count lines from a file (CRLF):
  
- > - __[count sync](example/auntie-count-sync-load-example.js)__
- > - __[dist sync](example/auntie-dist-sync-load-example.js)__
- > - __[count stream](example/auntie-count-async-stream-example.js)__
- > - __[dist stream](example/auntie-dist-async-stream-example.js)__
+ > - __[count with sync load](example/auntie-count-sync-load-example.js)__
+ > - __[dist with sync load](example/auntie-dist-sync-load-example.js)__
+ > - __[count with streaming data](example/auntie-count-async-stream-example.js)__
+ > - __[dist with streaming data](example/auntie-dist-async-stream-example.js)__
  
 #### snap event and collect (CRLF):
 
- > - __[snap](example/auntie-snap-event-example.js)__
- > - __[collect](example/auntie-collect-results-example.js)__
+ > - __[do snap](example/auntie-snap-event-example.js)__
+ > - __[do collect](example/auntie-collect-results-example.js)__
 
-> See __[examples](example/)__.
+> See __[ All examples](example/)__.
 
 ### MIT License
 
