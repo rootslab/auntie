@@ -1,12 +1,12 @@
 /*
- * Auntie example for #comb, split data by a single char
+ * Auntie example for #do, parsing for a single minus '-' char sequence
  */
 
 const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , dpath = __dirname + '/data/some-english-words-crlf.txt'
-    , pattern = '\n'
+    , dpath = __dirname + '/data/long-english-words-1-minus-seq.txt'
+    , pattern = '-'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
     , rstream = fs.createReadStream( dpath )
@@ -28,10 +28,6 @@ let m = 0
 
 untie.on( 'snap', function( data ) {
     log(' !snap (%d) -> (%d) %s', ++m, data.length, data );
-    // search a sequence inside the line
-    //let matches = untie.comb( seq, data )
-    //    ;
-    //if ( matches.length ) log( '  -> matched <%s> (%s) on:', seq, seq.length, matches );
 } );
 
 log( '\n - read stream..' );
