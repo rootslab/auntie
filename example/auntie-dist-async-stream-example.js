@@ -7,7 +7,7 @@
 const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , path = __dirname + '/some-english-words-seq.txt'
+    , path = __dirname + '/data/some-english-words-seq.txt'
     , pattern = '\r\n->'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
