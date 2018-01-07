@@ -17,7 +17,7 @@ log( '- Auntie example, loading english long words from file:\n "%s"', dpath );
 log( '\n- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
 // I voluntarily reduce the chunk buffer size to 10 bytes
-rstream._readableState.highWaterMark = 1;
+rstream._readableState.highWaterMark = 2;
 
 log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
