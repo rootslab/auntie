@@ -258,19 +258,19 @@ Auntie.cnt : Array
 
 #### split lines streaming from a CSV file (CRLF):
 
-> - __[do split lines](example/auntie-csv-split-lines-example.js)__
+> - __[do, comb: streaming data](example/auntie-csv-split-lines-example.js)__
 
 #### count lines from a file (CRLF):
  
- > - __[count with sync load](example/auntie-count-sync-load-example.js)__
- > - __[dist with sync load](example/auntie-dist-sync-load-example.js)__
- > - __[count with streaming data](example/auntie-count-async-stream-example.js)__
- > - __[dist with streaming data](example/auntie-dist-async-stream-example.js)__
+ > - __[count: sync load](example/auntie-count-sync-load-example.js)__
+ > - __[dist: sync load](example/auntie-dist-sync-load-example.js)__
+ > - __[count: streaming data](example/auntie-count-async-stream-example.js)__
+ > - __[dist: streaming data](example/auntie-dist-async-stream-example.js)__
  
 #### snap event and collect (CRLF):
 
- > - __[do snap](example/auntie-snap-event-example.js)__
- > - __[do collect](example/auntie-collect-results-example.js)__
+ > - __[do snap: streaming data](example/auntie-snap-event-example.js)__
+ > - __[do collect: streaming data](example/auntie-collect-results-example.js)__
 
 > See __[ All examples](example/)__.
 
