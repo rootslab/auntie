@@ -1,5 +1,5 @@
 /*
- * Auntie#set sequence test
+ * Auntie#set new sequence test
  */
 
 exports.test  = function ( done, assertions ) {

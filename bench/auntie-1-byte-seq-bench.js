@@ -1,6 +1,6 @@
 /*
  * Auntie benchmark, it (SYNC) loads a file containing 8192 long english words,
- * separated by CRLF '\r\n' sequence, then we build a test buffer repeating
+ * separated by 1 byte minus '-' sequence, then we build a test buffer repeating
  * the data loaded for 512 times.
  */
 
@@ -8,7 +8,7 @@ const log = console.log
     , now = Date.now
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , path = __dirname + '/long-english-words-seq.txt'
+    , path = __dirname + '/long-english-words-1-byte-seq.txt'
     , pattern = '-'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )

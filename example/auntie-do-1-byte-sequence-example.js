@@ -5,7 +5,7 @@
 const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
-    , dpath = __dirname + '/data/long-english-words-1-minus-seq.txt'
+    , dpath = __dirname + '/data/long-english-words-1-byte-seq.txt'
     , pattern = '-'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )

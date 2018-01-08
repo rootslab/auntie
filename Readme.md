@@ -41,6 +41,7 @@
   - __[split lines (streaming) from a CSV file](#split-lines-from-a-csv-file-crlf)__
   - __[count lines from a file](#count-lines-from-a-file-crlf)__ 
   - __[snap event and collect](#snap-event-and-collect-crlf)__
+- __[ToDo](/ToDo.md)__
 - __[MIT License](#mit-license)__
 
 ------------------------------------------------------------------------------
