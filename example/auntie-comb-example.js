@@ -18,10 +18,10 @@ log();
 log( '- Auntie example, loading english long words from file:\n "%s"', dpath );
 log( '\n- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
-// I voluntarily reduce the chunk buffer size to 10 bytes
+// I voluntarily reduce the chunk buffer size to k byte(s)
 rstream._readableState.highWaterMark = 1;
 
-log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
+log( '- new stream highwatermark value: %d byte(s)', rstream._readableState.highWaterMark );
 
 let m = 0
     , t = 0
@@ -39,7 +39,8 @@ untie.on( 'snap', function( data ) {
 log( '\n - read stream..' );
 
 rstream.on( 'data', function ( chunk ) {
-    // log( ' -> data chunk: %d', ++c );
+    ++c;
+    // log( ' -> data chunk: %d', c );
     t += chunk.length;
     untie.do( chunk, false );
 } );

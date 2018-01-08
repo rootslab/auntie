@@ -1,7 +1,7 @@
 /*
  * Auntie example for snap event, it loads a file containing 8192
  * long english words, separated by CRLF '\r\n' pattern.
- * For "messing" things up, the chunk size is reduced to 10 bytes.
+ * For "messing" things up, the chunk size is reduced to k bytes.
  */
 
 const log = console.log
@@ -19,7 +19,7 @@ log();
 log( '- Auntie example, loading english long words from file:\n "%s"', dpath );
 log( '\n- original stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
 
-// I voluntarily reduce the chunk buffer size to 10 bytes
+// I voluntarily reduce the chunk buffer size to k bytes
 rstream._readableState.highWaterMark = 1;
 
 log( '- new stream highwatermark value: %d bytes', rstream._readableState.highWaterMark );
