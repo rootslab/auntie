@@ -82,7 +82,7 @@ secs = ( etime - stime ) / 1000;
 perc = ( 100 * cnt.length * untie.seq.length / data.length ).toFixed( 2 );
 
 log( ' - elapsed: %d secs', secs );
-log( ' - total matches: %d', cnt.length );
+log( ' - total slices: %d', cnt.length );
 log( ' - total percentage of matching data: %d%', perc );
 log( ' - %d ops/sec', ( cnt.length / secs ).toFixed( 2 ) );
 log( ' - %d Mbits/sec', ( data.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );

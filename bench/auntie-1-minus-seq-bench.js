@@ -21,10 +21,11 @@ let data = fs.readFileSync( path )
     , perc = -1
     , cnt = 0
     , arr = []
+    , k = 512
     ;
 
-fdata = Buffer.allocUnsafe( 512 * data.length ); 
-for ( let i = 0; i < 512; ++i ) data.copy( fdata, i * data.length );
+fdata = Buffer.allocUnsafe( k * data.length ); 
+for ( let i = 0; i < k; ++i ) data.copy( fdata, i * data.length );
 
 // for ( let i = 0; i < 512; ++i ) arr.push( data );
 // fdata = Buffer.concat( arr ); 
@@ -84,7 +85,7 @@ secs = ( etime - stime ) / 1000;
 perc = ( 100 * cnt.length * untie.seq.length / fdata.length ).toFixed( 2 );
 
 log( ' - elapsed: %d secs', secs );
-log( ' - total matches: %d', cnt.length );
+log( ' - total slices: %d', cnt.length );
 log( ' - total percentage of matching data: %d%', perc );
 log( ' - %d ops/sec', ( cnt.length / secs ).toFixed( 2 ) );
 log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
