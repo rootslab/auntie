@@ -43,6 +43,7 @@ let t = 0
                 , qlen = 0
                 ;
             for ( ; i < curr.length; el = curr[ ++i ] ) {
+                // search for quotes inside the current match
                 qresults = untie.comb( quote, el );
                 qrlen = qresults.length;
                 if ( qrlen ) {
