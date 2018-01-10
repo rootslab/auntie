@@ -23,10 +23,11 @@ let stime = -1
     , perc = -1
     , cnt = 0
     , arr = []
-    // mb 
-    , mb = 60 << 20
-    , q = ( mb / slen ).toFixed( 0 )
-    , data = Buffer.allocUnsafe( mb ); 
+     // mb 
+    , mb = 60
+    , blength = 60 << 20
+    , q = ( blength / slen ).toFixed( 0 )
+    , data = Buffer.allocUnsafe( blength )
     ;
 
 log( '- filling test buffer (%d MBytes) with sequence..', mb );

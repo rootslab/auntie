@@ -27,7 +27,7 @@ let stime = -1
     , mb = 60
     , blength = 60 << 20
     , q = ( blength / slen ).toFixed( 0 )
-    , data = Buffer.allocUnsafe( blength ); 
+    , data = Buffer.allocUnsafe( blength )
     ;
 
 log( '- filling test buffer (%d MBytes) with sequence..', mb );
