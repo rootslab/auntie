@@ -234,7 +234,7 @@ Auntie.cnt : Array
  * optionally from a starting index and limiting results to a specified number
  * of occurrences (like Bop.parse does).
  */
-'comb' : function ( Buffer | String seq, Buffer data [ , Number from [, Number limit ] ] ) : Array
+'comb' : function ( Buffer | String seq, Buffer data [, Number from [, Number limit ] ] ) : Array
 ```
 
 ------------------------------------------------------------------------------
