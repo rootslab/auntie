@@ -10,6 +10,9 @@
   - #do, #count:
     - write tests for the current implementation of the naive mode.
 
+  - #comb
+    - write simple test for "from" and "limit" when sequence is 1 byte long
+
 >__TODO__:
 
   - Buffering. An example scenario: no match for several chunks, the snip will

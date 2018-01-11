@@ -6,7 +6,7 @@ const log = console.log
     , fs = require( 'fs' )
     , Auntie = require( '../' )
     , dpath = __dirname + '/data/some-english-words-crlf.txt'
-    , pattern = '\r\n'
+    , pattern = '\n'
     // default pattern is '\r\n'
     , untie = Auntie( pattern )
     // a custom seq to search inside lines
@@ -31,7 +31,7 @@ let m = 0
 untie.on( 'snap', function( data ) {
     log(' !snap (%d) -> (%d) %s', ++m, data.length, data );
     // search a sequence inside the line
-    let matches = untie.comb( seq, data )
+    let matches = untie.comb( seq, data, 0 )
         ;
     if ( matches.length ) log( '  -> matched <%s> (%s) on:', seq, seq.length, matches );
 } );

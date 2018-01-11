@@ -230,9 +230,11 @@ Auntie.cnt : Array
 /*
  * parse current data for a generic sequence. It returns an Array of indexes.
  * NOTE: it doesn't affect the current streaming parser and it doesn't save
- * any data. It simply parses a chunk of data for the specified sequence.
+ * any data. It simply parses a chunk of data for the specified sequence,
+ * optionally from a starting index and limiting results to a specified number
+ * of occurrences (like Bop.parse does).
  */
-'comb' : function ( Buffer | String | Number sequence, Buffer data ) : Array
+'comb' : function ( Buffer | String seq, Buffer data [ , Number from [, Number limit ] ] ) : Array
 ```
 
 ------------------------------------------------------------------------------
