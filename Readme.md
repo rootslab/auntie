@@ -217,14 +217,14 @@ Auntie.cnt : Array
 'flush' : function ( [ Boolean collect ] ) : [ Buffer ]
 ```
 
-> #### Auntie.set
+#### Auntie.set
 > ##### set a new sequence for splitting data.
 ```javascript
 // default sequence is '\r\n' or CRLF sequence.
 'set' : function ( [ Buffer | String | Number sequence ] ) : Auntie
 ```
 
-> #### Auntie.comb
+#### Auntie.comb
 > ##### search for a char or a sequence into the current data.
 ```javascript
 /*
