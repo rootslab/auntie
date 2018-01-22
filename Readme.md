@@ -70,7 +70,7 @@ const Auntie  = require( 'auntie' );
  $ npm test
 ```
 
-> __to execute a single test file simply do__:
+> __to execute a single test file, simply do__:
 
 ```bash
  $ node test/file-name.js
@@ -92,6 +92,12 @@ const Auntie  = require( 'auntie' );
 ```bash
 $ cd auntie/
 $ npm run bench
+```
+
+> __to execute a single bench file, simply do__:
+
+```bash
+ $ node bench/file-name.js
 ```
 
 ------------------------------------------------------------------------------
