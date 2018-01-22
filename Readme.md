@@ -200,10 +200,10 @@ Auntie.cnt : Array
 > ##### split data or a stream of data by the current sequence
 ```javascript
 /*
- * if collect is true, it returns an Array of results, otherwise it 
- * emits a 'snap' event for every match; then, after having finished
- * to parse data, it emits a 'snip' event, with the remaining data
- * that does not contains the sequence.
+ * if collect is true, it returns an Array of data slices; otherwise, it 
+ * emits a 'snap' event for every slice; then, after having finished to
+ * parse data, it emits a 'snip' event, with the remaining data that does
+ * not contain the sequence ( the current me.snip property ).
  *
  * NOTE: it saves the remaining data that does not contains the
  * sequence, for the next #do call on fresh data (to check for 
