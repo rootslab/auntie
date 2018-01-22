@@ -12,12 +12,12 @@
     - [ ] write tests for the current implementation of the naive mode.
 
   - #comb
-    - [ ] write simple test for "from" and "limit" when sequence is 1 byte long
+    - [ ] write simple tests, using "from" and "limit", also for naive mode.
 
 
->__TODO__:
+>__TODO??__:
 
-  - [ ] Delayed concatenation. An example scenario: suppose that we have obtained
+  - [ ] __Delayed Concatenation__. An example scenario: suppose that we have obtained
         no match for several chunks, the snip could also become very large. we could
         collect multiple buffers which don't contain the sequence, therefore delaying
         the data concatenation; however, for now, we concatenate only the previous
