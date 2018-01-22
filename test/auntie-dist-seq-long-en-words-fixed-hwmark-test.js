@@ -65,7 +65,7 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = c;
+            // rstream._readableState.highWaterMark = c;
             // avoid output on travis ci
             reply = untie.dist( chunk );
             if ( process.env.TRAVIS ) return;

@@ -53,18 +53,16 @@ log( ' - %d Gbits/sec', ( fdata.length / ( 128 * 1024 * 1024 * secs ) ).toFixed(
 log( '\n- flush data and reset internal state..' );
 untie.flush( true );
 
-// TODO skipping for now, 1 char sequence is not efficently handled by #dist
-log( '\n-> counting occurrences using #dist..' );
-log( ' - TODO: skipping #dist for now, 1 char sequence is not efficently handled!' );
-/** /
+log( '\n-> counting occurrences and min/max distances using #dist..' );
+
 stime = now();
-cnt = untie.dist( fdata )[ 0 ];
+cnt = untie.dist( fdata );
 etime = now();
 secs = ( etime - stime ) / 1000;
-perc = ( 100 * cnt * untie.seq.length / fdata.length ).toFixed( 2 );
+perc = ( 100 * cnt[ 0 ] * untie.seq.length / fdata.length ).toFixed( 2 );
 
 log( ' - elapsed: %d secs', secs );
-log( ' - total matches: %d', cnt );
+log( ' - total matches/min/max/remaining:', cnt );
 log( ' - total percentage of matching data: %d%', perc );
 log( ' - %d ops/sec', ( cnt / secs ).toFixed( 2 ) );
 log( ' - %d Mbits/sec', ( fdata.length / ( 128 * 1024 * secs ) ).toFixed( 2 ) );
@@ -74,7 +72,6 @@ log( '\n- flush data and reset internal state..' );
 untie.flush( true );
 
 untie.on( 'snap', () => log( arguments ))
-/**/
 
 log( '\n-> parsing occurrences using #do..' );
 

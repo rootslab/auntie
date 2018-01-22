@@ -14,6 +14,7 @@ exports.test  = function ( done, assertions ) {
         , complex = {
             do : untie.do
             , count : untie.count
+            , dist : untie.dist
         }
         , utf8char = Buffer.from( 'é' )
         ;
@@ -27,6 +28,9 @@ exports.test  = function ( done, assertions ) {
     
     log( '- check if method #count switch to naive mode..' );
     assert.ok( untie.do !== complex.do );
+
+    log( '- check if method #dist switch to naive mode..' );
+    assert.ok( untie.dist !== complex.dist );
     
     log( '- Auntie#set change sequence with no arguments (CRLF)' );
     untie.set();
@@ -45,6 +49,10 @@ exports.test  = function ( done, assertions ) {
 
     log( '- check #count method, it should not have been switched to naive mode (obviously)' );
     assert.ok( untie.count === complex.count );
+
+    log( '- check #dist method, it should not have been switched to naive mode (obviously)' );
+    assert.ok( untie.dist === complex.dist );
+
     // exit test
     exit();
 };

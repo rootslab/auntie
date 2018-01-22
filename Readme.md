@@ -17,10 +17,10 @@
 [![NPM GRAPH](https://nodei.co/npm/auntie.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/auntie/)
 
 > __Auntie__, _my dear_ __ultra-fast__ module for __untying/splitting/counting__
-> a stream of data by a __chosen sequence/separator__.
+> a stream of data by a __chosen separator sequence__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
-> optimized for __separator__ lengths between 2 and 255 bytes.
+> optimized for pattern lengths between 2 and 255 bytes.
 
 ### Table of Contents
 
@@ -79,12 +79,13 @@ const Auntie  = require( 'auntie' );
 > __output example and running time__:
 
 ```bash
+...
 - current path is 'test'.
-- time elapsed: 187.154 secs.
+- time elapsed: 93.61 secs.
 
-  23 test files were loaded.
-  23 test files were launched.
-  1272381 assertions succeeded.
+  25 test files were loaded.
+  25 test files were launched.
+  1272575 assertions succeeded.
 ```
 ### Run Benchmarks
 
@@ -165,7 +166,7 @@ Auntie.cnt : Array
  * 
  * NOTE: it saves the minimum necessary data that does not contains
  * the sequence, for the next #count call with fresh data (to check
- * for single occurrences between 2 chunks of data).
+ * for single occurrences between 2 chunks of data.
  */
 'count' : function ( Buffer data ) : Array
 ```
@@ -230,9 +231,11 @@ Auntie.cnt : Array
 /*
  * parse current data for a generic sequence. It returns an Array of indexes.
  * NOTE: it doesn't affect the current streaming parser and it doesn't save
- * any data. It simply parses a chunk of data for the specified sequence.
+ * any data. It simply parses a chunk of data for the specified sequence,
+ * optionally from a starting index and limiting results to a specified number
+ * of occurrences (like Bop.parse does).
  */
-'comb' : function ( Buffer | String | Number sequence, Buffer data ) : Array
+'comb' : function ( Buffer | String seq, Buffer data [, Number from [, Number limit ] ] ) : Array
 ```
 
 ------------------------------------------------------------------------------
