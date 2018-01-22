@@ -79,12 +79,13 @@ const Auntie  = require( 'auntie' );
 > __output example and running time__:
 
 ```bash
+...
 - current path is 'test'.
-- time elapsed: 187.154 secs.
+- time elapsed: 93.61 secs.
 
-  23 test files were loaded.
-  23 test files were launched.
-  1272381 assertions succeeded.
+  25 test files were loaded.
+  25 test files were launched.
+  1272575 assertions succeeded.
 ```
 ### Run Benchmarks
 
@@ -165,7 +166,7 @@ Auntie.cnt : Array
  * 
  * NOTE: it saves the minimum necessary data that does not contains
  * the sequence, for the next #count call with fresh data (to check
- * for single occurrences between 2 chunks of data).
+ * for single occurrences between 2 chunks of data.
  */
 'count' : function ( Buffer data ) : Array
 ```

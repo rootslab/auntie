@@ -12,8 +12,8 @@ exports.test  = function ( done, assertions ) {
         , sync_load_and_collect = require( './util/sync-load-and-collect.js' )
         , Auntie = require( '../' )
         , stdout = process.stdout
-        , path = __dirname + '/data/long-english-words-crlf.txt'
-        , pattern = '\r\n'
+        , path = __dirname + '/data/long-english-words-minus.txt'
+        , pattern = '-'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
         // async read stream
@@ -40,7 +40,6 @@ exports.test  = function ( done, assertions ) {
         , val = distances[ 0 ]
         ;
     for ( ; i < dlen; val = distances[ ++i ] ) {
-        // TODO
         if ( val < rcnt[ 1 ] ) rcnt[ 1 ] = val;
         else if ( val > rcnt[ 2 ] ) rcnt[ 2 ] = val;
     }
@@ -67,12 +66,12 @@ exports.test  = function ( done, assertions ) {
             t += chunk.length;
             // change watermark to pseudo-random integer
             // rstream._readableState.highWaterMark = c;
-            reply = untie.dist( chunk );
             // avoid output on travis ci
+            reply = untie.dist( chunk );
             if ( process.env.TRAVIS ) return;
-            stdout.clearLine();
-            stdout.cursorTo( 0 );
-            stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
+            //stdout.clearLine();
+            //stdout.cursorTo( 0 );
+            //stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
         } );
 
         rstream.on( 'end', function () {
@@ -99,13 +98,14 @@ exports.test  = function ( done, assertions ) {
             log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
 
             log( '- check #dist results: ', reply );
+            log( '- correct #dist results: ', rcnt );
             assert.deepEqual( rcnt, reply, 'erroneous #dist reply!' );
 
             // flush data
             untie.flush();
 
-            // increment chunk size and run test until size is plen * 2
-            if ( csize < untie.seq.length << 2 ) run( ++csize );
+            // increment chunk size and run test until size is plen * 32
+            if ( csize < untie.seq.length << 5 ) run( ++csize );
             else exit();
         } );
     };

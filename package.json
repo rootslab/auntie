@@ -1,48 +1,48 @@
 {
-  "name": "auntie",
-  "version": "0.23.4",
-  "description": "Auntie, my dear ultra-fast module for untying/splitting/counting a stream of data by a chosen separator sequence.",
-  "homepage": "https://github.com/rootslab/auntie",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/rootslab/auntie.git"
-  },
-  "keywords": [
-    "auntie",
-    "parser",
-    "splitter",
-    "pattern search",
-    "pattern matching",
-    "streaming parser",
-    "boyer-moore",
-    "csv",
-    "tsv",
-    "csv stream",
-    "csv parser"
-  ],
-  "author": {
-    "name": "Guglielmo Ferri",
-    "email": "44gatti@gmail.com"
-  },
-  "dependencies": {
-    "bolgia": ">=2.8.2",
-    "bop": ">=4.0.2"
+  "name": "auntie"
+  , "version": "0.24.0"
+  , "description": "Auntie, my dear ultra-fast module for untying/splitting/counting a stream of data by a chosen sequence/separator."
+  , "homepage": "https://github.com/rootslab/auntie"
+  , "private": false
+  , "repository": {
+    "type": "git"
+    , "url": "git://github.com/rootslab/auntie.git"
+  }
+  , "keywords": [
+    "auntie"
+    , "parser"
+    , "splitter"
+    , "pattern search"
+    , "pattern matching"
+    , "streaming parser"
+    , "boyer-moore"
+    , "csv"
+    , "tsv"
+    , "csv stream"
+    , "csv parser"
+]
+  , "author": {
+    "name": "Guglielmo Ferri"
+    , "email": "44gatti@gmail.com"
+  }
+  , "dependencies": {
+      "bolgia" : ">=2.8.2"
+      , "bop" : ">=4.0.2"
   },
   "devDependencies": {
-    "dado": ">=0.3.1"
-  },
-  "main": "index",
-  "engines": {
+     "dado" : ">=0.3.1"
+  }
+  , "main": "index"
+  , "engines": {
     "node": ">=6.x.x"
-  },
-  "scripts": {
-    "test": "node test/run.js",
-    "bench": "bash bench/run.sh"
-  },
-  "license": "MIT",
-  "readmeFilename": "Readme.md",
-  "bugs": {
+  }
+  , "scripts": {
+    "test": "node test/run.js"
+    , "bench": "bash bench/run.sh"
+  }
+  , "license": "MIT"
+  , "readmeFilename": "Readme.md"
+  , "bugs": {
     "url": "https://github.com/rootslab/auntie/issues"
   }
 }
