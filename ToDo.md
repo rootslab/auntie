@@ -1,6 +1,6 @@
 >__MISSING__:
   
-  - #dist:
+  - __#dist__:
     - [ ] re-implement the complex mode in a efficient way (memory/time/ops)
     - [ ] write (deep) tests for complex mode.
     - [x] implement the naive mode for #dist method (single byte sequence)
@@ -8,10 +8,10 @@
     - [x] write tests for naive mode.
   
   
-  - #do, #count:
+  - __#do__, __#count__:
     - [ ] write tests for the current implementation of the naive mode.
 
-  - #comb
+  - __#comb__
     - [ ] write simple tests, using "from" and "limit", also for naive mode.
 
 
