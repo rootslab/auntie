@@ -81,11 +81,11 @@ const Auntie  = require( 'auntie' );
 ```bash
 ...
 - current path is 'test'.
-- time elapsed: 93.61 secs.
+- time elapsed: 106.596 secs.
 
-  25 test files were loaded.
-  25 test files were launched.
-  1272575 assertions succeeded.
+  26 test files were loaded.
+  26 test files were launched.
+  1272671 assertions succeeded.
 ```
 ### Run Benchmarks
 
