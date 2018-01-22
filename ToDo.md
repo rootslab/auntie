@@ -17,9 +17,10 @@
 
 >__TODO__:
 
-  - [ ] Buffering. An example scenario: no match for several chunks, the snip will
-    become very large. we could collect multiple buffers which don't contain
-    the sequence, therefore delaying the data concatenation; however, for now,
-    we concat only the previous chunk of data with the current, the tonto way.
+  - [ ] Delayed concatenation. An example scenario: suppose that we have obtained
+        no match for several chunks, the snip could also become very large. we could
+        collect multiple buffers which don't contain the sequence, therefore delaying
+        the data concatenation; however, for now, we concatenate only the previous
+        chunk of data with the current one, the tonto way.
   
   - [ ] ..
