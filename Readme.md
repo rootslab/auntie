@@ -203,7 +203,7 @@ Auntie.cnt : Array
  * if collect is true, it returns an Array of data slices; otherwise, it 
  * emits a 'snap' event for every slice; then, after having finished to
  * parse data, it emits a 'snip' event, with the remaining data that does
- * not contain the sequence ( the current me.snip property ).
+ * not contain the sequence ( the current Auntie.snip property ).
  *
  * NOTE: it saves the remaining data that does not contains the
  * sequence, for the next #do call on fresh data (to check for 
