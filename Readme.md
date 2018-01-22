@@ -20,7 +20,7 @@
 > a stream of data by a __chosen separator sequence__.
 
 > It uses __[Bop](https://github.com/rootslab/bop)__ under the hood, a **_Boyer-Moore_** parser,
-> optimized for pattern lengths between 2 and 255 bytes.
+> optimized for sequence lengths up to 255 bytes.
 
 ### Table of Contents
 
