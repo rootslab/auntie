@@ -1,6 +1,6 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
- * long english words, separated by '-----' sequence.
+ * long english words, separated by '-' sequence.
  * For "messing" things up, the chunk size is reduced to k byte(s).
  */
 
@@ -69,9 +69,9 @@ exports.test  = function ( done, assertions ) {
             // avoid output on travis ci
             reply = untie.dist( chunk );
             if ( process.env.TRAVIS ) return;
-            //stdout.clearLine();
-            //stdout.cursorTo( 0 );
-            //stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
+            // stdout.clearLine();
+            // stdout.cursorTo( 0 );
+            // stdout.write( '- curr highwatermark: (' + rstream._readableState.highWaterMark + ') bytes' );
         } );
 
         rstream.on( 'end', function () {

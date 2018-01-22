@@ -1,7 +1,7 @@
 /*
  * Auntie#dist test, it loads a file containing 8192
- * long english words, separated by '-----' sequence.
- * For "messing" things up, the chunk size is randomly generated.
+ * long english words, separated by '-' sequence.
+ * For "messing" things up, the chunk size is reduced to k byte(s).
  */
 
 exports.test  = function ( done, assertions ) {
@@ -13,7 +13,7 @@ exports.test  = function ( done, assertions ) {
         , Auntie = require( '../' )
         , stdout = process.stdout
         , path = __dirname + '/data/long-english-words-minus.txt'
-        , pattern = '-'
+        , pattern = '\n'
         // default pattern is '\r\n'
         , untie = Auntie( pattern )
         // async read stream
@@ -26,11 +26,6 @@ exports.test  = function ( done, assertions ) {
         // length of data loaded
         , llen = results[ 3 ]
         //random numbers
-        , rand = ( min, max ) => {
-            min = + min || 0;
-            max = + max || 4000;
-            return min + Math.floor( Math.random() * ( max - min + 1 ) );
-        }
         ;
 
     log( '- Auntie#dist test, loading english long words from file in ASYNC way:\n "%s"', path );
@@ -41,11 +36,12 @@ exports.test  = function ( done, assertions ) {
         , dlen = distances.length
         , blen = buffers.length
         , mlen = matches.length
-        , rcnt = [ blen, Infinity, -Infinity, llen - matches[ mlen - 1 ] - untie.seq.length ]
+        , xlen = mlen ? llen - matches[ mlen - 1 ] - untie.seq.length : llen 
+        , rcnt = [ blen, Infinity, -Infinity, xlen ]
         , val = distances[ 0 ]
         ;
+    log( rcnt, llen,  )
     for ( ; i < dlen; val = distances[ ++i ] ) {
-        // TODO
         if ( val < rcnt[ 1 ] ) rcnt[ 1 ] = val;
         else if ( val > rcnt[ 2 ] ) rcnt[ 2 ] = val;
     }
@@ -71,9 +67,9 @@ exports.test  = function ( done, assertions ) {
             ++c;
             t += chunk.length;
             // change watermark to pseudo-random integer
-            rstream._readableState.highWaterMark = rand( 1, c << 1 );
-            reply = untie.dist( chunk );
+            // rstream._readableState.highWaterMark = c;
             // avoid output on travis ci
+            reply = untie.dist( chunk );
             if ( process.env.TRAVIS ) return;
             // stdout.clearLine();
             // stdout.cursorTo( 0 );
@@ -104,6 +100,7 @@ exports.test  = function ( done, assertions ) {
             log( '- average chunk size: %d byte(s)', ( t / c ).toFixed( 0 ) );
 
             log( '- check #dist results: ', reply );
+            log( '- correct #dist results: ', rcnt );
             assert.deepEqual( rcnt, reply, 'erroneous #dist reply!' );
 
             // flush data
