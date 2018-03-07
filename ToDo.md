@@ -9,7 +9,7 @@
   
   
   - __#do__, __#count__:
-    - [ ] write tests for the current implementation of the naive mode.
+    - [ ] write tests for the current implementation of the naive mode (__( naive) #do is buggy__)
 
   - __#comb__
     - [ ] write simple tests, using "from" and "limit", also for naive mode.
